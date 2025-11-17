@@ -28,7 +28,7 @@ fu! s:GetText(arg)
 	let l:code = -1
 	let l:text = v:null
 
-	if a:arg == "xhtml"
+	if a:arg ==? "xhtml"
 		let l:code = 0
 		let l:text = [
 			\ "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
@@ -46,7 +46,7 @@ fu! s:GetText(arg)
 			\ "</html>",
 		\ ]
 
-	elseif a:arg == "lorem"
+	elseif a:arg ==? "lorem"
 		let l:code = 1
 		let l:text = "Lorem ipsum odor amet, consectetuer adipiscing elit. Potenti" .
 				\ "ultricies inceptos, quam facilisis aliquam vehicula quis." .
@@ -59,7 +59,7 @@ fu! s:GetText(arg)
 				\ "Imperdiet suscipit natoque sem tellus ut; vel urna. Vulputate" .
 				\ "cubilia sodales risus at eget et sociosqu lacus commodo."
 
-	elseif a:arg == "breaked-lorem" || a:arg == "b-lorem" || a:arg == "blorem"
+	elseif a:arg ==? "breaked-lorem" || a:arg ==? "b-lorem" || a:arg ==? "blorem"
 		let l:code = 1
 		let l:text = [
 			\"Lorem ipsum odor amet, consectetuer adipiscing elit. Potenti",
