@@ -1,0 +1,57 @@
+CONCEPT
+
+	Identifiers scope always must be explicited
+during their declaration (except to function
+arguments), and use - run `:h internal-variables`.
+
+	Only the strictly necessary 'things' can
+be global (`g:`). They must be declared in
+the indentation level zero - no-global things
+declared in that level must be putted in
+the script scope (`s:`).
+
+	Identifiers must not be declared inside loops;
+functions must not declared inside other functions.
+
+	`v:null` must be used to representate "no-started
+variables".
+
+	`v:false` and `v:true` must be used as boolean
+values.
+
+	Comparations with `v:null` must be explicit
+(`l:foo == v:null`).
+
+	Case-sensitive support must be explicit during
+comparation between strings (query `:h expr-==#`).
+
+
+
+SYNTAX
+
+" use only colors from ANSI Pattern
+hi! camelCase ctermfg=red
+
+sy match camelCase /\v/
+
+let s:snake_case = v:null
+
+if v:false
+	" code
+elseif v:false
+	" code
+else
+	" code
+endif
+
+fu! s:PascalCase(snake_case)
+	let l:foo = v:null
+endfu
+
+for l:i in range(0)
+	" code
+endfo
+
+while v:false
+	" code
+endwh
