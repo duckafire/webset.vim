@@ -23,35 +23,8 @@
 fu! FormatHTMLTag(style)
 	let l:cursor_line = line(".")
 	let l:cursor_line_content = getline( l:cursor_line )
-	let l:cursor_line_content_length = len( l:cursor_line_content )
 
-	let l:tag = ""
-	let t:char = v:null
-	let l:is_indent = v:true
-
-	for l:id in range( l:cursor_line_content_length )
-		let l:char = l:cursor_line_content[ l:id ]
-
-		if match( l:char, '\s' ) != -1
-			if l:is_indent
-				continue
-			endif
-
-			if l:id < l:cursor_line_content_length
-				echoerr "Part of the line content was ignored, because it was separed with a white-space character."
-			endif
-
-			break
-		endif
-
-		let l:is_indent = v:false
-		let l:tag = l:tag . l:char
-	endfor
-
-	if l:tag == ""
-		echoerr "There is no graphic content in the current line."
-		return
-	endif
+	let l:tag = matchstr( l:cursor_line_content, '\S\+' )
 
 	if a:style == 0
 		call setline( l:cursor_line, "<" . l:tag . "></" . l:tag . ">")
