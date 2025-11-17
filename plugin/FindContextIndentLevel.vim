@@ -20,7 +20,7 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 
-fu! FindContextIndentLevel()
+fu! g:FindContextIndentLevel()
 	let l:adj_cursor_line     = 0
 	let l:cursor_line         = v:null
 	let l:cursor_line_content = v:null
@@ -45,4 +45,4 @@ fu! FindContextIndentLevel()
 	let l:indent_level = len( l:literal_indent_level )
 
 	return [l:literal_indent_level, l:indent_level]
-endf
+endfu

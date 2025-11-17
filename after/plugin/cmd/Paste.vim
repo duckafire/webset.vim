@@ -95,7 +95,7 @@ fu! s:InsertText(append, line, text)
 	for l:chunk in a:text
 		call append(l:line, l:chunk)
 		let l:line += 1
-	endfor
+	endfo
 endf
 
 fu! s:PasteTextOnCurrentBuffer(...)

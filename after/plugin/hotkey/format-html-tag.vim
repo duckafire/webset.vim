@@ -20,7 +20,7 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 
-fu! FormatHTMLTag(style)
+fu! g:FormatHTMLTag(style)
 	let l:cursor_line = line(".")
 	let l:cursor_line_content = getline( l:cursor_line )
 
@@ -42,7 +42,7 @@ fu! FormatHTMLTag(style)
 		normal $
 		normal 2h
 	endif
-endf
+endfu
 
 " call `:echo get(g:, "mapleader", "DEFAULT")`
 " to check `mapleader` value. If it is undefined,
@@ -51,6 +51,6 @@ endf
 " Void container;
 " opened Container;
 " No-Container;
-nnoremap <Leader>wv :call FormatHTMLTag(0)<CR>
-nnoremap <Leader>wc :call FormatHTMLTag(1)<CR>
-nnoremap <Leader>wn :call FormatHTMLTag(2)<CR>
+nnoremap <Leader>wv :call g:FormatHTMLTag(0)<CR>
+nnoremap <Leader>wc :call g:FormatHTMLTag(1)<CR>
+nnoremap <Leader>wn :call g:FormatHTMLTag(2)<CR>
