@@ -150,3 +150,4 @@ fu! s:PasteTextOnCurrentBuffer(...)
 endf
 
 command! -nargs=? WebSetPaste :call s:PasteTextOnCurrentBuffer(<f-args>)
+command! -nargs=? WSPaste     :call s:PasteTextOnCurrentBuffer(<f-args>)
