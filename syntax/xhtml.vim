@@ -42,7 +42,7 @@ augroup FILE_TYPE_HTML_TO_XHTML
 augroup END
 
 " ERRORS
-sy match xhtmlTextContentError            /\v[<>]/
+sy match xhtmlTextContentError /\v[<>]/
 
 sy cluster xhtmlTagError contains=xhtmlTagAttrError,xhtmlTagAttrValueError
 
