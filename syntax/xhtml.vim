@@ -41,7 +41,7 @@ augroup FILE_TYPE_HTML_TO_XHTML
 augroup END
 
 " errors
-sy match xhtmlTextContentError            /\v%(\<[!?\/]?|[?\/]?\>|[&'"])/
+sy match xhtmlTextContentError            /\v[<>]/
 sy match xhtmlTagAttrError      contained /\v[^ ]*%(\H|\-)\=/
 sy match xhtmlTagAttrValueError contained /\v\=[^"][^ ]*/
 
