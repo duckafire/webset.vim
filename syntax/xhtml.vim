@@ -54,42 +54,49 @@ hi! def link xhtmlTagAttrError      xhtmlError
 hi! def link xhtmlTagAttrValueError xhtmlError
 
 " tag regions
-sy region xhtmlContTag matchgroup=xhtmlContTagStyle start='<' end='>' oneline
+sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>'
+	\ start='<a' start='<abbr' start='<address' start='<article' start='<audio' start='<b' start='<bdi' start='<bdo' start='<blockquote' start='<button' start='<canvas' start='<caption' start='<cite' start='<code' start='<colgroup' start='<data' start='<datalist' start='<dd' start='<del' start='<details' start='<dfn'
+	\ start='<dialog' start='<div' start='<dl' start='<dt' start='<em' start='<fieldset' start='<figcaption' start='<figure' start='<footer' start='<form' start='<h1' start='<h2' start='<h3' start='<h4' start='<h5' start='<h6' start='<header' start='<hgroup' start='<i' start='<iframe' start='<ins' start='<kbd' start='<label' start='<legend' start='<li' start='<main' start='<map'
+	\ start='<mark' start='<meter' start='<nav' start='<object' start='<ol' start='<optgroup' start='<option' start='<output' start='<p' start='<picture' start='<pre' start='<progress' start='<q' start='<rp' start='<rt' start='<ruby' start='<samp' start='<section' start='<select' start='<small' start='<span' start='<strong' start='<sub' start='<summary'
+	\ start='<sup' start='<table' start='<tbody' start='<td' start='<template' start='<textarea' start='<tfoot' start='<th' start='<thead' start='<time' start='<tr' start='<ul' start='<vari' start='<video'
 	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,xhtmlUrl,@xhtmlTagError
 
-sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle start='<' end='/>' oneline
+sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>'
+	\ start='<html' start='<head' start='<title' start='<style' start='<body' start='<script' start='<noscript'
+
+sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle end='/>'
+	\ start='<area' start='<base' start='<br' start='<col' start='<hr' start='<img' start='<input' start='<link' start='<meta' start='<source' start='<track' start='<wbr'
 	\ contains=xhtmlNoContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,@xhtmlTagError
 
-sy region xhtmlContTagEnd matchgroup=xhtmlContTagStyle start='</' end='>' oneline
-	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlUrl
-
-sy region xhtmlXmlNoContTag matchgroup=xhtmlXmlNoContTagStyle start='\%1l<?' end='?>' oneline
+sy region xhtmlXmlNoContTag matchgroup=xhtmlXmlNoContTagStyle end='?>' oneline
+	\ start='\%1l<?xml'
 	\ contains=xhtmlXmlTagName,xhtmlXmlTagAttr,xhtmlXmlTagAttr
 
-sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle start='\%<3l<!' end='>' oneline
+sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle end='>' oneline
+	\ start='\%<3l<!DOCTYPE html'
 	\ contains=xhtmlDtypeTagName,xhtmlDtypeUrl,xhtmlDtypeTagAttrValue
 
-hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=bold
-hi! def xhtmlNoContTagStyle      ctermfg=cyan     ctermbg=none cterm=bold
+sy match xhtmlContTagEnd /\v\<\/%(a|abbr|address|article|audio|b|bdi|bdo|blockquote|button|canvas|caption|cite|code|colgroup|data|datalist|dd|del|details|dfn)\>/
+sy match xhtmlContTagEnd /\v\<\/%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map)\>/
+sy match xhtmlContTagEnd /\v\<\/%(mark|meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>/
+sy match xhtmlContTagEnd /\v\<\/%(sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|ul|vari|video)\>/
+
+sy match xhtmlSpecContTagEnd /\v\<\/%(html|head|title|style|body|script|noscript)\>/
+
+hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=none
+hi! def xhtmlSpecContTagStyle    ctermfg=blue     ctermbg=none cterm=bold
+hi! def xhtmlNoContTagStyle      ctermfg=cyan     ctermbg=none cterm=none
 hi! def xhtmlXmlNoContTagStyle   ctermfg=darkgray ctermbg=none cterm=bold
 hi! def xhtmlDtypeNoContTagStyle ctermfg=darkgray ctermbg=none cterm=bold
 
+hi! def link xhtmlContTagEnd     xhtmlContTagStyle
+hi! def link xhtmlSpecContTagEnd xhtmlSpecContTagStyle
+
+" debug
+finish
+
 " tag names
-sy keyword xhtmlContTagName     contained a abbr address article audio b bdi bdo blockquote button canvas caption cite code colgroup datalist dd del details dfn
-sy keyword xhtmlContTagName     contained dialog div dl dt em fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 header hgroup i iframe ins kbd label legend li main map
-sy keyword xhtmlContTagName     contained mark meter nav object ol optgroup option output p picture pre progress q rp rt ruby samp section select small span strong sub summary
-sy keyword xhtmlContTagName     contained sup table tbody td template textarea tfoot th thead time tr ul vari video
-" This match below allows that these tag
-" name can be overlaped by an attribute
-" named as `data` or `data-*`. This was
-" written because keywords have priority
-" over matches (and regions; run:
-" `:h syn-priority`).
-sy match   xhtmlContTagName     contained 'data'
-sy keyword xhtmlNoContTagName   contained area base br col hr img input link meta source track wbr
-sy keyword xhtmlSpecContTagName contained html head title style body script noscript
-sy keyword xhtmlXmlTagName      contained xml
-sy keyword xhtmlDtypeTagName    contained DOCTYPE html PUBLIC
+"sy keyword xhtmlDtypeTagName    contained DOCTYPE html PUBLIC
 
 " attributes
 sy cluster xhtmlTagAttr contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr
