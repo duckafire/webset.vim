@@ -55,13 +55,13 @@ hi! def link xhtmlTagAttrError      xhtmlError
 hi! def link xhtmlTagAttrValueError xhtmlError
 
 " HTML TAGS
-sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>' contains=@xhtmlTagThings
+sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>' contains=@xhtmlTagThings,@xhtmlTagError
 	\ start='<a' start='<abbr' start='<address' start='<article' start='<audio' start='<b' start='<bdi' start='<bdo' start='<blockquote' start='<button' start='<canvas' start='<caption' start='<cite' start='<code' start='<colgroup' start='<data' start='<datalist' start='<dd' start='<del' start='<details' start='<dfn'
 	\ start='<dialog' start='<div' start='<dl' start='<dt' start='<em' start='<fieldset' start='<figcaption' start='<figure' start='<footer' start='<form' start='<h1' start='<h2' start='<h3' start='<h4' start='<h5' start='<h6' start='<header' start='<hgroup' start='<i' start='<iframe' start='<ins' start='<kbd' start='<label' start='<legend' start='<li' start='<main' start='<map'
 	\ start='<mark' start='<meter' start='<nav' start='<object' start='<ol' start='<optgroup' start='<option' start='<output' start='<p' start='<picture' start='<pre' start='<progress' start='<q' start='<rp' start='<rt' start='<ruby' start='<samp' start='<section' start='<select' start='<small' start='<span' start='<strong' start='<sub' start='<summary'
 	\ start='<sup' start='<table' start='<tbody' start='<td' start='<template' start='<textarea' start='<tfoot' start='<th' start='<thead' start='<time' start='<tr' start='<ul' start='<vari' start='<video'
 
-sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>' contains=@xhtmlTagThings
+sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>' contains=@xhtmlTagThings,@xhtmlTagError
 	\ start='<html' start='<head' start='<title' start='<style' start='<body' start='<script' start='<noscript'
 
 sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle end='/>' contains=@xhtmlTagThings
