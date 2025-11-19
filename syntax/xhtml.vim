@@ -43,16 +43,12 @@ augroup END
 
 " ERRORS
 sy match xhtmlTextContentError            /\v[<>]/
-sy match xhtmlTagAttrError      contained /\v[^ ]*%(\H|\-)\=/
-sy match xhtmlTagAttrValueError contained /\v\=[^"][^ ]*/
 
 sy cluster xhtmlTagError contains=xhtmlTagAttrError,xhtmlTagAttrValueError
 
 hi! def xhtmlError ctermfg=red ctermbg=white cterm=standout,bold
 
 hi! def link xhtmlTextContentError  xhtmlError
-hi! def link xhtmlTagAttrError      xhtmlError
-hi! def link xhtmlTagAttrValueError xhtmlError
 
 " HTML TAGS
 sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>' contains=@xhtmlTagThings,@xhtmlTagError
@@ -145,3 +141,4 @@ hi! def xhtmlTagAttrValue ctermfg=magenta ctermbg=none cterm=none
 hi! def xhtmlOperator     ctermfg=yellow  ctermbg=none cterm=none
 hi! def xhtmlCharCode     ctermfg=red     ctermbg=none cterm=none
 hi! def xhtmlUrl          ctermfg=magenta ctermbg=none cterm=underline
+
