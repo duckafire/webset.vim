@@ -25,6 +25,7 @@
 " Cont  : Container(s)
 " Attr  : Attribute(s)
 
+" MISCELLANOUS LOGIC
 fu! g:FileTypeHtmlToXhtml()
 	set filetype=xhtml
 
@@ -40,7 +41,7 @@ augroup FILE_TYPE_HTML_TO_XHTML
 	autocmd FileType html             call g:FileTypeHtmlToXhtml()
 augroup END
 
-" errors
+" ERRORS
 sy match xhtmlTextContentError            /\v[<>]/
 sy match xhtmlTagAttrError      contained /\v[^ ]*%(\H|\-)\=/
 sy match xhtmlTagAttrValueError contained /\v\=[^"][^ ]*/
@@ -53,35 +54,30 @@ hi! def link xhtmlTextContentError  xhtmlError
 hi! def link xhtmlTagAttrError      xhtmlError
 hi! def link xhtmlTagAttrValueError xhtmlError
 
-" html tag
-sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>'
+" HTML TAGS
+sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>' contains=@xhtmlTagThings
 	\ start='<a' start='<abbr' start='<address' start='<article' start='<audio' start='<b' start='<bdi' start='<bdo' start='<blockquote' start='<button' start='<canvas' start='<caption' start='<cite' start='<code' start='<colgroup' start='<data' start='<datalist' start='<dd' start='<del' start='<details' start='<dfn'
 	\ start='<dialog' start='<div' start='<dl' start='<dt' start='<em' start='<fieldset' start='<figcaption' start='<figure' start='<footer' start='<form' start='<h1' start='<h2' start='<h3' start='<h4' start='<h5' start='<h6' start='<header' start='<hgroup' start='<i' start='<iframe' start='<ins' start='<kbd' start='<label' start='<legend' start='<li' start='<main' start='<map'
 	\ start='<mark' start='<meter' start='<nav' start='<object' start='<ol' start='<optgroup' start='<option' start='<output' start='<p' start='<picture' start='<pre' start='<progress' start='<q' start='<rp' start='<rt' start='<ruby' start='<samp' start='<section' start='<select' start='<small' start='<span' start='<strong' start='<sub' start='<summary'
 	\ start='<sup' start='<table' start='<tbody' start='<td' start='<template' start='<textarea' start='<tfoot' start='<th' start='<thead' start='<time' start='<tr' start='<ul' start='<vari' start='<video'
-	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,xhtmlUrl,@xhtmlTagError
 
-sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>'
+sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>' contains=@xhtmlTagThings
 	\ start='<html' start='<head' start='<title' start='<style' start='<body' start='<script' start='<noscript'
 
-sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle end='/>'
+sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle end='/>' contains=@xhtmlTagThings
 	\ start='<area' start='<base' start='<br' start='<col' start='<hr' start='<img' start='<input' start='<link' start='<meta' start='<source' start='<track' start='<wbr'
-	\ contains=xhtmlNoContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,@xhtmlTagError
 
-sy region xhtmlXmlNoContTag matchgroup=xhtmlXmlNoContTagStyle end='?>' oneline
-	\ start='\%1l<?xml'
-	\ contains=xhtmlXmlTagName,xhtmlXmlTagAttr,xhtmlXmlTagAttr
-
-sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle end='>' oneline
-	\ start='\%<3l<!DOCTYPE html'
-	\ contains=xhtmlDtypeTagName,xhtmlDtypeUrl,xhtmlDtypeTagAttrValue
+sy region xhtmlXmlNoContTag   matchgroup=xhtmlXmlNoContTagStyle   start='\%1l<?xml'           end='?>' oneline contains=xhtmlXmlTagAttr
+sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle start='\%<3l<!DOCTYPE html' end='>'  oneline
 
 sy match xhtmlContTagEnd '\v\</%(a|abbr|address|article|audio|b|bdi|bdo|blockquote|button|canvas|caption|cite|code|colgroup|data|datalist|dd|del|details|dfn)\>'
-sy match xhtmlContTagEnd '\v\</%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map)\>'
-sy match xhtmlContTagEnd '\v\</%(mark|meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>'
+sy match xhtmlContTagEnd '\v\</%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h[1-6]|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map|mark)\>'
+sy match xhtmlContTagEnd '\v\</%(meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>'
 sy match xhtmlContTagEnd '\v\</%(sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|ul|vari|video)\>'
 
 sy match xhtmlSpecContTagEnd '\v\</%(html|head|title|style|body|script|noscript)\>'
+
+sy region xhtmlComment start='<!--' end='-->'
 
 hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=none
 hi! def xhtmlSpecContTagStyle    ctermfg=blue     ctermbg=none cterm=bold
@@ -89,72 +85,63 @@ hi! def xhtmlNoContTagStyle      ctermfg=cyan     ctermbg=none cterm=none
 hi! def xhtmlXmlNoContTagStyle   ctermfg=darkgray ctermbg=none cterm=bold
 hi! def xhtmlDtypeNoContTagStyle ctermfg=darkgray ctermbg=none cterm=bold
 
+hi! xhtmlDtypeNoContTag ctermfg=darkgray ctermbg=none cterm=italic
+hi! def xhtmlComment    ctermfg=darkgray ctermbg=none cterm=none
+
 hi! def link xhtmlContTagEnd     xhtmlContTagStyle
 hi! def link xhtmlSpecContTagEnd xhtmlSpecContTagStyle
 
-" debug
-finish
+" TAGS ATTRIBUTES
+sy cluster xhtmlTagThings
+	\ contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr,xhtmlTagAttrValue,xhtmlOperator
 
-" tag names
-"sy keyword xhtmlDtypeTagName    contained DOCTYPE html PUBLIC
-
-" attributes
-sy cluster xhtmlTagAttr contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr
-
-sy keyword xhtmlStdTagAttr contained abbr above accept accesskey action align alink allowfullscreen alt archive async autocomplete autofocus autoplay axis background below bgcolor
-sy keyword xhtmlStdTagAttr contained border bordercolor cellpadding cellspacing challenge char charoff charset checked cite class classid clear clip code codebase codetype color cols
+"   `data` is below, as a match instead a keyword,
+" for it to be overlaped by a `data-*` attribute.
+" It could not occur if it is a keyword, because
+" they have priority over matches (and regions).
+"   Other ones are here because keyword only can
+" contain characters present in `iskeyword` or
+" because they have some conflict with other
+" attribute(s) present here.
+"   See:
+"     :h syn-priority
+"     :h syn-keyword
+"     :set iskeyword?
+sy match   xhtmlStdTagAttr contained /\v%(accept-charset|accept|charset|data|http-equiv|summary|z-index)/
+sy keyword xhtmlStdTagAttr contained abbr above accesskey action align alink allowfullscreen alt archive async autocomplete autofocus autoplay axis background below bgcolor
+sy keyword xhtmlStdTagAttr contained border bordercolor cellpadding cellspacing challenge char charoff checked cite class classid clear clip code codebase codetype color cols
 sy keyword xhtmlStdTagAttr contained colspan compact content contenteditable contextmenu controls coords crossorigin datetime declare default defer dialog dir dirname disabled
 sy keyword xhtmlStdTagAttr contained download draggable dropzone enctype face for form formaction formenctype formmethod formnovalidate formtarget frame frameborder gutter headers
-sy keyword xhtmlStdTagAttr contained height hidden high hreflang hspace ht icon id id inputmode ismap keytype kind lang language left link list longdesc loop low lowsrc marginheight
+sy keyword xhtmlStdTagAttr contained height hidden high href hreflang hspace ht icon id id inputmode ismap keytype kind lang language left link list longdesc loop low lowsrc marginheight
 sy keyword xhtmlStdTagAttr contained marginwidth max maxlength media method min minlength multiple muted name nohref nonce noresize noshade novalidate nowrap object open optimum pagex
 sy keyword xhtmlStdTagAttr contained pagey pattern placeholder poster preload profile prompt radiogroup readonly rel required rev reversed role rows rowspan rules sandbox scheme scope
 sy keyword xhtmlStdTagAttr contained scrolling selected shape size sizes span spellcheck src srcdoc srclang srcset standby start step style summary tabindex target text title top
 sy keyword xhtmlStdTagAttr contained translate type typemustmatch url usemap valign value valuetype version visibility vlink vspace width wrap
-" This match below allows that these tag
-" name can be overlaped by an attribute
-" named as ``data-*`. This was written
-" because keywords have priority over
-" matches (and regions; run:
-" `:h syn-priority`).
-sy match   xhtmlStdTagAttr contained 'data'
+
 sy match  xhtmlDataTagAttr contained /\v<data\-%(\w|\-)*/
+
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(activedescendant|atomic|autocomplete|busy|checked|col%(count|index|span)|controls|current|describedby|details|disabled|dropeffect)/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(errormessage|expanded|flowto|grabbed|haspopup|hidden|invalid|keyshortcuts|label%(ledby)?|level|live|modal|multi%(line|selectable))/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(orientation|owns|placeholder|posinset|pressed|readonly|relevant|required|roledescription|row%(count|index|span)|selected|setsize)/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(sort|value%(max|min|now|text))/
+
 sy match  xhtmlXmlTagAttr  contained /\v\c<encoding\="%(ascii|utf-8)"/
 sy match  xhtmlXmlTagAttr  contained /\v\c<standalone\="%(yes|no)"/
 sy match  xhtmlXmlTagAttr  contained /\v\c<version\="\d+%(\.\d+(\.\d+)?)?"/
 
 hi! def xhtmlStdTagAttr  ctermfg=green    ctermbg=none cterm=none
 hi! def xhtmlDataTagAttr ctermfg=green    ctermbg=none cterm=italic
-" xhtmlAriaTagAttr
 hi! def xhtmlXmlTagAttr  ctermfg=darkgray ctermbg=none cterm=none
 
 hi! def link xhtmlAriaTagAttr xhtmlStdTagAttr
 
-hi! def xhtmlContTagName        ctermfg=blue     ctermbg=none cterm=none
-hi! def xhtmlNoContTagName      ctermfg=cyan     ctermbg=none cterm=none
-hi! def xhtmlSpecContTagName    ctermfg=blue     ctermbg=none cterm=bold
-hi! def xhtmlXmlTagName         ctermfg=darkgray ctermbg=none cterm=bold
-hi! def xhtmlDtypeTagName       ctermfg=darkgray ctermbg=none cterm=bold
-
-" other regions
-sy region xhtmlComment           start=/<!--/ end=/-->/            keepend
-sy region xhtmlTagAttrValue      start=/"/    end=/"/   skip=/\\"/         oneline contained contains=xhtmlUrl
-sy region xhtmlDtypeTagAttrValue start=/"/    end=/"/   skip=/\\"/         oneline contained contains=xhtmlDtypeUrl
-
-hi! def xhtmlComment           ctermfg=darkgray ctermbg=none cterm=none
-hi! def xhtmlTagAttrValue      ctermfg=magenta  ctermbg=none cterm=none
-hi! def xhtmlDtypeTagAttrValue ctermfg=darkgray ctermbg=none cterm=italic
-
-" miscellaneous
+" MISCELLANEOUS MATCHES
+sy region xhtmlTagAttrValue start=/"/ end=/"/ skip=/\\"/ oneline contained contains=xhtmlUrl
 sy match xhtmlOperator contained /\v[=]/
 sy match xhtmlCharCode           /\v\&(\l+|#\d+);/
 sy match xhtmlUrl      contained /\vhttps?:\/\/[^"]*/
-sy match xhtmlDtypeUrl contained /\vhttps?:\/\/[^"]*/
 
-hi! def xhtmlOperator ctermfg=yellow   ctermbg=none cterm=none
-hi! def xhtmlCharCode ctermfg=red      ctermbg=none cterm=none
-hi! def xhtmlUrl      ctermfg=magenta  ctermbg=none cterm=underline
-hi! def xhtmlDtypeUrl ctermfg=darkgray ctermbg=none cterm=italic,underline
+hi! def xhtmlTagAttrValue ctermfg=magenta ctermbg=none cterm=none
+hi! def xhtmlOperator     ctermfg=yellow  ctermbg=none cterm=none
+hi! def xhtmlCharCode     ctermfg=red     ctermbg=none cterm=none
+hi! def xhtmlUrl          ctermfg=magenta ctermbg=none cterm=underline
