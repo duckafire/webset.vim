@@ -47,10 +47,17 @@ hi! def xhtmlXmlNoContTagStyle   ctermfg=darkgray ctermbg=none cterm=bold
 hi! def xhtmlDtypeNoContTagStyle ctermfg=darkgray ctermbg=none cterm=bold
 
 " tag names
-sy keyword xhtmlContTagName     contained a abbr address article audio b bdi bdo blockquote button canvas caption cite code colgroup data datalist dd del details dfn
+sy keyword xhtmlContTagName     contained a abbr address article audio b bdi bdo blockquote button canvas caption cite code colgroup datalist dd del details dfn
 sy keyword xhtmlContTagName     contained dialog div dl dt em fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 header hgroup i iframe ins kbd label legend li main map
 sy keyword xhtmlContTagName     contained mark meter nav object ol optgroup option output p picture pre progress q rp rt ruby samp section select small span strong sub summary
 sy keyword xhtmlContTagName     contained sup table tbody td template textarea tfoot th thead time tr ul vari video
+" This match below allows that these tag
+" name can be overlaped by an attribute
+" named as `data` or `data-*`. This was
+" written because keywords have priority
+" over matches (and regions; run:
+" `:h syn-priority`).
+sy match   xhtmlContTagName     contained 'data'
 sy keyword xhtmlNoContTagName   contained area base br col hr img input link meta source track wbr
 sy keyword xhtmlSpecContTagName contained html head title style body script noscript
 sy keyword xhtmlXmlTagName      contained xml
@@ -61,13 +68,20 @@ sy cluster xhtmlTagAttr contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAt
 
 sy keyword xhtmlStdTagAttr contained abbr above accept accesskey action align alink allowfullscreen alt archive async autocomplete autofocus autoplay axis background below bgcolor
 sy keyword xhtmlStdTagAttr contained border bordercolor cellpadding cellspacing challenge char charoff charset checked cite class classid clear clip code codebase codetype color cols
-sy keyword xhtmlStdTagAttr contained colspan compact content contenteditable contextmenu controls coords crossorigin data datetime declare default defer dialog dir dirname disabled
+sy keyword xhtmlStdTagAttr contained colspan compact content contenteditable contextmenu controls coords crossorigin datetime declare default defer dialog dir dirname disabled
 sy keyword xhtmlStdTagAttr contained download draggable dropzone enctype face for form formaction formenctype formmethod formnovalidate formtarget frame frameborder gutter headers
 sy keyword xhtmlStdTagAttr contained height hidden high hreflang hspace ht icon id id inputmode ismap keytype kind lang language left link list longdesc loop low lowsrc marginheight
 sy keyword xhtmlStdTagAttr contained marginwidth max maxlength media method min minlength multiple muted name nohref nonce noresize noshade novalidate nowrap object open optimum pagex
 sy keyword xhtmlStdTagAttr contained pagey pattern placeholder poster preload profile prompt radiogroup readonly rel required rev reversed role rows rowspan rules sandbox scheme scope
 sy keyword xhtmlStdTagAttr contained scrolling selected shape size sizes span spellcheck src srcdoc srclang srcset standby start step style summary tabindex target text title top
 sy keyword xhtmlStdTagAttr contained translate type typemustmatch url usemap valign value valuetype version visibility vlink vspace width wrap
+" This match below allows that these tag
+" name can be overlaped by an attribute
+" named as ``data-*`. This was written
+" because keywords have priority over
+" matches (and regions; run:
+" `:h syn-priority`).
+sy match   xhtmlStdTagAttr contained 'data'
 sy match  xhtmlDataTagAttr contained /\v<data\-%(\w|\-)*/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(activedescendant|atomic|autocomplete|busy|checked|col%(count|index|span)|controls|current|describedby|details|disabled|dropeffect)/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(errormessage|expanded|flowto|grabbed|haspopup|hidden|invalid|keyshortcuts|label%(ledby)?|level|live|modal|multi%(line|selectable))/
