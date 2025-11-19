@@ -77,14 +77,14 @@ sy keyword xhtmlDtypeTagName    contained DOCTYPE html PUBLIC
 " attributes
 sy cluster xhtmlTagAttr contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr
 
-sy keyword xhtmlStdTagAttr contained abbr above accept accesskey action align alink allowfullscreen alt archive async autocomplete autofocus autoplay axis background below bgcolor
-sy keyword xhtmlStdTagAttr contained border bordercolor cellpadding cellspacing challenge char charoff charset checked cite class classid clear clip code codebase codetype color cols
+sy keyword xhtmlStdTagAttr contained abbr above accesskey action align alink allowfullscreen alt archive async autocomplete autofocus autoplay axis background below bgcolor
+sy keyword xhtmlStdTagAttr contained border bordercolor cellpadding cellspacing challenge char charoff checked cite class classid clear clip code codebase codetype color cols
 sy keyword xhtmlStdTagAttr contained colspan compact content contenteditable contextmenu controls coords crossorigin datetime declare default defer dialog dir dirname disabled
 sy keyword xhtmlStdTagAttr contained download draggable dropzone enctype face for form formaction formenctype formmethod formnovalidate formtarget frame frameborder gutter headers
-sy keyword xhtmlStdTagAttr contained height hidden high hreflang hspace ht icon id id inputmode ismap keytype kind lang language left link list longdesc loop low lowsrc marginheight
+sy keyword xhtmlStdTagAttr contained height hidden high href hreflang hspace ht icon id id inputmode ismap keytype kind lang language left link list longdesc loop low lowsrc marginheight
 sy keyword xhtmlStdTagAttr contained marginwidth max maxlength media method min minlength multiple muted name nohref nonce noresize noshade novalidate nowrap object open optimum pagex
 sy keyword xhtmlStdTagAttr contained pagey pattern placeholder poster preload profile prompt radiogroup readonly rel required rev reversed role rows rowspan rules sandbox scheme scope
-sy keyword xhtmlStdTagAttr contained scrolling selected shape size sizes span spellcheck src srcdoc srclang srcset standby start step style summary tabindex target text title top
+sy keyword xhtmlStdTagAttr contained scrolling selected shape size sizes span spellcheck src srcdoc srclang srcset standby start step style tabindex target text title top
 sy keyword xhtmlStdTagAttr contained translate type typemustmatch url usemap valign value valuetype version visibility vlink vspace width wrap
 " This match below allows that these tag
 " name can be overlaped by an attribute
@@ -93,6 +93,7 @@ sy keyword xhtmlStdTagAttr contained translate type typemustmatch url usemap val
 " matches (and regions; run:
 " `:h syn-priority`).
 sy match   xhtmlStdTagAttr contained 'data'
+sy match   xhtmlStdTagAttr contained /\v%(summary|accept-charset|accept|charset|z-index|http-equiv)/
 sy match  xhtmlDataTagAttr contained /\v<data\-%(\w|\-)*/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(activedescendant|atomic|autocomplete|busy|checked|col%(count|index|span)|controls|current|describedby|details|disabled|dropeffect)/
 sy match  xhtmlAriaTagAttr contained /\v<aria\-%(errormessage|expanded|flowto|grabbed|haspopup|hidden|invalid|keyshortcuts|label%(ledby)?|level|live|modal|multi%(line|selectable))/
