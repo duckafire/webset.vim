@@ -25,6 +25,17 @@
 " Cont  : Container(s)
 " Attr  : Attribute(s)
 
+augroup FILE_TYPE_HTML_TO_XHTML
+	autocmd!
+	autocmd BufRead,BufNewFile *.html set filetype=xhtml
+	autocmd FileType html             set filetype=xhtml
+augroup END
+
+for group in ["Arg","CssDefinition","H3","ItalicBoldUnderline","PreProcAttrName","StyleArg","UnderlineItalic","Bold","CssStyleComment","H4","ItalicUnderline","PreStmt","Tag","UnderlineItalicBold","BoldItalic","EndTag","H5","ItalicUnderlineBold","ScriptTag","TagError","Value","BoldItalicUnderline","Error","H6","LeadingSpace","Special","TagN","BoldUnderline","Event","Head","Link","SpecialChar","TagName","BoldUnderlineItalic","EventDQ","Highlight","PreAttr","SpecialTagName","Title","Comment","EventSQ","HighlightSkip","PreError","Statement","Underline","CommentError","H1","Italic","PreProc","Strike","UnderlineBold","CommentPart","H2","ItalicBold","PreProcAttrError","String","UnderlineBoldItalic"]
+	exec "sy  clear html" . group
+	exec "hi! clear html" . group
+endfor
+
 " tag regions
 sy region xhtmlContTag matchgroup=xhtmlContTagStyle start='<' end='>' oneline
 	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,xhtmlUrl
