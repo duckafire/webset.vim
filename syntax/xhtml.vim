@@ -53,7 +53,7 @@ hi! def link xhtmlTextContentError  xhtmlError
 hi! def link xhtmlTagAttrError      xhtmlError
 hi! def link xhtmlTagAttrValueError xhtmlError
 
-" tag regions
+" html tag
 sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>'
 	\ start='<a' start='<abbr' start='<address' start='<article' start='<audio' start='<b' start='<bdi' start='<bdo' start='<blockquote' start='<button' start='<canvas' start='<caption' start='<cite' start='<code' start='<colgroup' start='<data' start='<datalist' start='<dd' start='<del' start='<details' start='<dfn'
 	\ start='<dialog' start='<div' start='<dl' start='<dt' start='<em' start='<fieldset' start='<figcaption' start='<figure' start='<footer' start='<form' start='<h1' start='<h2' start='<h3' start='<h4' start='<h5' start='<h6' start='<header' start='<hgroup' start='<i' start='<iframe' start='<ins' start='<kbd' start='<label' start='<legend' start='<li' start='<main' start='<map'
@@ -76,12 +76,12 @@ sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle end='>' onelin
 	\ start='\%<3l<!DOCTYPE html'
 	\ contains=xhtmlDtypeTagName,xhtmlDtypeUrl,xhtmlDtypeTagAttrValue
 
-sy match xhtmlContTagEnd /\v\<\/%(a|abbr|address|article|audio|b|bdi|bdo|blockquote|button|canvas|caption|cite|code|colgroup|data|datalist|dd|del|details|dfn)\>/
-sy match xhtmlContTagEnd /\v\<\/%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map)\>/
-sy match xhtmlContTagEnd /\v\<\/%(mark|meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>/
-sy match xhtmlContTagEnd /\v\<\/%(sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|ul|vari|video)\>/
+sy match xhtmlContTagEnd '\v\</%(a|abbr|address|article|audio|b|bdi|bdo|blockquote|button|canvas|caption|cite|code|colgroup|data|datalist|dd|del|details|dfn)\>'
+sy match xhtmlContTagEnd '\v\</%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map)\>'
+sy match xhtmlContTagEnd '\v\</%(mark|meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>'
+sy match xhtmlContTagEnd '\v\</%(sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|ul|vari|video)\>'
 
-sy match xhtmlSpecContTagEnd /\v\<\/%(html|head|title|style|body|script|noscript)\>/
+sy match xhtmlSpecContTagEnd '\v\</%(html|head|title|style|body|script|noscript)\>'
 
 hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=none
 hi! def xhtmlSpecContTagStyle    ctermfg=blue     ctermbg=none cterm=bold
