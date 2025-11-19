@@ -36,12 +36,25 @@ for group in ["Arg","CssDefinition","H3","ItalicBoldUnderline","PreProcAttrName"
 	exec "hi! clear html" . group
 endfor
 
+" errors
+sy match xhtmlTextContentError            /\v%(\<[!?\/]?|[?\/]?\>|[&'"])/
+sy match xhtmlTagAttrError      contained /\v[^ ]*%(\H|\-)\=/
+sy match xhtmlTagAttrValueError contained /\v\=[^"][^ ]*/
+
+sy cluster xhtmlTagError contains=xhtmlTagAttrError,xhtmlTagAttrValueError
+
+hi! def xhtmlError ctermfg=red ctermbg=white cterm=standout,bold
+
+hi! def link xhtmlTextContentError  xhtmlError
+hi! def link xhtmlTagAttrError      xhtmlError
+hi! def link xhtmlTagAttrValueError xhtmlError
+
 " tag regions
 sy region xhtmlContTag matchgroup=xhtmlContTagStyle start='<' end='>' oneline
-	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,xhtmlUrl
+	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,xhtmlUrl,@xhtmlTagError
 
 sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle start='<' end='/>' oneline
-	\ contains=xhtmlNoContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue
+	\ contains=xhtmlNoContTagName,xhtmlOperator,@xhtmlTagAttr,xhtmlTagAttrValue,@xhtmlTagError
 
 sy region xhtmlContTagEnd matchgroup=xhtmlContTagStyle start='</' end='>' oneline
 	\ contains=xhtmlContTagName,xhtmlSpecContTagName,xhtmlUrl
