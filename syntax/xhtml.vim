@@ -134,8 +134,8 @@ hi! def xhtmlXmlTagAttr  ctermfg=darkgray ctermbg=none cterm=none
 hi! def link xhtmlAriaTagAttr xhtmlStdTagAttr
 
 " MISCELLANEOUS MATCHES
-sy region xhtmlTagAttrValue start=/"/ end=/"/ skip=/\\"/ oneline contained contains=xhtmlUrl
-sy region xhtmlPropertyOG   matchgroup=xhtmlPropertyOGStyle start=/\v<property\="[a-zA-Z_-]+:/ end=/"/ skip=/\\"/ contained
+sy region xhtmlTagAttrValue start=/"/ end=/"/ skip=/[^\\]\\"/ oneline contained contains=xhtmlUrl
+sy region xhtmlPropertyOG   matchgroup=xhtmlPropertyOGStyle start=/\v<property\="[a-zA-Z_-]+:/ end=/"/ skip=/[^\\]\\"/ contained
 
 sy match xhtmlOperator contained /\v[=]/
 sy match xhtmlCharCode           /\v\&(\l+|#\d+);/
