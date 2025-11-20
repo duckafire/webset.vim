@@ -73,8 +73,6 @@ sy match xhtmlContTagEnd '\v\</%(sup|table|tbody|td|template|textarea|tfoot|th|t
 
 sy match xhtmlSpecContTagEnd '\v\</%(html|head|title|style|body|script|noscript)\>'
 
-sy region xhtmlComment start='<!--' end='-->'
-
 hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=none
 hi! def xhtmlSpecContTagStyle    ctermfg=blue     ctermbg=none cterm=bold
 hi! def xhtmlNoContTagStyle      ctermfg=cyan     ctermbg=none cterm=none
@@ -82,10 +80,19 @@ hi! def xhtmlXmlNoContTagStyle   ctermfg=darkgray ctermbg=none cterm=bold
 hi! def xhtmlDtypeNoContTagStyle ctermfg=darkgray ctermbg=none cterm=bold
 
 hi! xhtmlDtypeNoContTag ctermfg=darkgray ctermbg=none cterm=italic
-hi! def xhtmlComment    ctermfg=darkgray ctermbg=none cterm=none
 
 hi! def link xhtmlContTagEnd     xhtmlContTagStyle
 hi! def link xhtmlSpecContTagEnd xhtmlSpecContTagStyle
+
+" COMMENTS
+sy region xhtmlComment start='<!--' end='-->' contains=xhtmlCommentTitle,xhtmlCommentTag
+
+sy match   xhtmlCommentTitle contained /\v%(^|\<!\-\-)\s*\zs(\u|\s)+:/
+sy keyword xhtmlCommentTag   contained CAUTION DEBUG EDIT NOTE TODO WARN WARNING
+
+hi! def xhtmlComment      ctermfg=darkgray ctermbg=none  cterm=none
+hi! def xhtmlCommentTitle ctermfg=cyan     ctermbg=none  cterm=none
+hi! def xhtmlCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 
 " TAGS ATTRIBUTES
 sy cluster xhtmlTagThings
@@ -141,4 +148,3 @@ hi! def xhtmlTagAttrValue ctermfg=magenta ctermbg=none cterm=none
 hi! def xhtmlOperator     ctermfg=yellow  ctermbg=none cterm=none
 hi! def xhtmlCharCode     ctermfg=red     ctermbg=none cterm=none
 hi! def xhtmlUrl          ctermfg=magenta ctermbg=none cterm=underline
-
