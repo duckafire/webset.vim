@@ -52,26 +52,21 @@ hi! def link xhtmlTextContentError  xhtmlError
 
 " HTML TAGS
 sy region xhtmlContTag matchgroup=xhtmlContTagStyle end='>' contains=@xhtmlTagThings,@xhtmlTagError
-	\ start='<a' start='<abbr' start='<address' start='<article' start='<audio' start='<b' start='<bdi' start='<bdo' start='<blockquote' start='<button' start='<canvas' start='<caption' start='<cite' start='<code' start='<colgroup' start='<data' start='<datalist' start='<dd' start='<del' start='<details' start='<dfn'
-	\ start='<dialog' start='<div' start='<dl' start='<dt' start='<em' start='<fieldset' start='<figcaption' start='<figure' start='<footer' start='<form' start='<h1' start='<h2' start='<h3' start='<h4' start='<h5' start='<h6' start='<header' start='<hgroup' start='<i' start='<iframe' start='<ins' start='<kbd' start='<label' start='<legend' start='<li' start='<main' start='<map'
-	\ start='<mark' start='<meter' start='<nav' start='<object' start='<ol' start='<optgroup' start='<option' start='<output' start='<p' start='<picture' start='<pre' start='<progress' start='<q' start='<rp' start='<rt' start='<ruby' start='<samp' start='<section' start='<select' start='<small' start='<span' start='<strong' start='<sub' start='<summary'
-	\ start='<sup' start='<table' start='<tbody' start='<td' start='<template' start='<textarea' start='<tfoot' start='<th' start='<thead' start='<time' start='<tr' start='<ul' start='<vari' start='<video'
+	\ start='\v\<%(abbr|address|article|audio|blockquote|button|canvas|cite|code|colgroup|del|details|dfn|dialog|div|em|fieldset|figure|footer|form|header|hgroup|iframe|ins|kbd|label)>'
+	\ start='\v\<%(legend|meter|nav|object|output|picture|pre|progress|ruby|samp|section|select|small|span|strong|sub|summary|sup|table|template|textarea|time|var|video|data%(list)?)>'
+	\ start='\v\<%(opt%(group|ion)|t%(head|body|foot|[dhr])|%(fig)?caption|ma%(in|p|rk)|b%(d[io])?|r[pt]|h[1-6]|d[ltd]|[ou]l|[apq]|l?i)>'
 
-sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle end='>' contains=@xhtmlTagThings,@xhtmlTagError
-	\ start='<html' start='<head' start='<title' start='<style' start='<body' start='<script' start='<noscript'
-
-sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle end='/>' contains=@xhtmlTagThings
-	\ start='<area' start='<base' start='<br' start='<col' start='<hr' start='<img' start='<input' start='<link' start='<meta' start='<source' start='<track' start='<wbr'
+sy region xhtmlSpecContTag matchgroup=xhtmlSpecContTagStyle contains=@xhtmlTagThings,@xhtmlTagError end='>' start='\v\<%(html|head|title|style|body|%(no)?script)>'
+sy region xhtmlNoContTag matchgroup=xhtmlNoContTagStyle contains=@xhtmlTagThings end='/>' start='\v\<%(area|base|col|img|input|link|meta|source|track|%(h|w?b)r)>'
 
 sy region xhtmlXmlNoContTag   matchgroup=xhtmlXmlNoContTagStyle   start='\%1l<?xml'           end='?>' oneline contains=xhtmlXmlTagAttr
 sy region xhtmlDtypeNoContTag matchgroup=xhtmlDtypeNoContTagStyle start='\%<3l<!DOCTYPE html' end='>'  oneline
 
-sy match xhtmlContTagEnd '\v\</%(a|abbr|address|article|audio|b|bdi|bdo|blockquote|button|canvas|caption|cite|code|colgroup|data|datalist|dd|del|details|dfn)\>'
-sy match xhtmlContTagEnd '\v\</%(dialog|div|dl|dt|em|fieldset|figcaption|figure|footer|form|h[1-6]|header|hgroup|i|iframe|ins|kbd|label|legend|li|main|map|mark)\>'
-sy match xhtmlContTagEnd '\v\</%(meter|nav|object|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|samp|section|select|small|span|strong|sub|summary)\>'
-sy match xhtmlContTagEnd '\v\</%(sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|ul|vari|video)\>'
+sy match xhtmlContTagEnd '\v\</%(h[1-6]|d[ltd]|figure|%(fig)?caption|b%(d[io])?|l?i|r[pt]|t%(head|body|foot|[dhr])|[ou]l|data%(list)?|opt%(group|ion)|[apq]|ma%(in|p|rk)|abbr|address)\>'
+sy match xhtmlContTagEnd '\v\</%(article|audio|blockquote|button|canvas|cite|code|colgroup|del|details|dfn|dialog|div|em|fieldset|footer|form|header|hgroup|iframe|ins|kbd|label|legend)\>'
+sy match xhtmlContTagEnd '\v\</%(meter|nav|object|output|picture|pre|progress|ruby|samp|section|select|small|span|strong|sub|summary|sup|table|template|textarea|time|var|video)\>'
 
-sy match xhtmlSpecContTagEnd '\v\</%(html|head|title|style|body|script|noscript)\>'
+sy match xhtmlSpecContTagEnd '\v\</%(html|head|title|style|body|%(no)?script)\>'
 
 hi! def xhtmlContTagStyle        ctermfg=blue     ctermbg=none cterm=none
 hi! def xhtmlSpecContTagStyle    ctermfg=blue     ctermbg=none cterm=bold
