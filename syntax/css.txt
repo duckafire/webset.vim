@@ -1,0 +1,372 @@
+" FUNCTIONS:
+" %(a?%(cos|sin|tan2?)|attr|blur|brightness|calc)
+" %(circle|clamp|color%(\-mix)?|contrast|counters?|cubic-bezier|drop-shadow|ellipse|exp|fit-content|grayscale|h%(sl|wb)|hue-rotate|hypot|in%(set|vert))
+" %(light-dark|%(conic|linear|radial)\-gradient|log|matrix%(3d)?|min%(max)?|m%(ax|od)|%(ok)?l%(ab|ch)|opacity|perspective|polygon|pow|r%(ay|em|gb))
+" %(repeat%(ing\-%(conic|linear|radial)\-gradient)?|rotate%(3d|[XYZ])?|round|saturate|scale%(3d|[XYZ])?|sepia|skew[XY]?|sqrt|steps|translate[XY]?|url|var)
+
+" acos
+" asin
+" atan
+" atan2
+" attr
+" blur
+" brightness
+" calc
+" circle
+" clamp
+" color
+" color-mix
+" conic-gradient
+" contrast
+" cos
+" counter
+" counters
+" cubic-bezier
+" drop-shadow
+" ellipse
+" exp
+" fit-content
+" grayscale
+" hsl
+" hue-rotate
+" hwb
+" hypot
+" inset
+" invert
+" lab
+" lch
+" light-dark
+" linear-gradient
+" log
+" matrix
+" matrix3d
+" max
+" min
+" minmax
+" mod
+" oklab
+" oklch
+" opacity
+" perspective
+" polygon
+" pow
+" radial-gradient
+" ray
+" rem
+" repeat
+" repeating-conic-gradient
+" repeating-linear-gradient
+" repeating-radial-gradient
+" rgb
+" rotate
+" rotate3d
+" rotateX
+" rotateY
+" rotateZ
+" round
+" saturate
+" scale
+" scale3d
+" scaleX
+" scaleY
+" sepia
+" sin
+" skew
+" skewX
+" skewY
+" sqrt
+" steps
+" tan
+" translate
+" translateX
+" translateY
+" url
+" var
+
+" PSEUDO CLASSES:
+" active
+" checked
+" default
+" disabled
+" empty
+" enabled
+" first
+" first-child
+" first-of-type
+" fullscreen
+" focus
+" hover
+" indeterminate
+" in-range
+" invalid
+" lang()
+" last-child
+" last-of-type
+" left
+" link
+" only-child
+" only-of-type
+" optional
+" out-of-range
+" read-only
+" read-write
+" required
+" right
+" root
+" scope
+" target
+" valid
+" visited
+
+" dir()
+" not()
+" nth-child()
+" nth-last-child()
+" nth-last-of-type()
+" nth-of-type()
+
+" PSEUDO OBJECTS:
+" ::%(after|before|cue|first\-%(letter|line)|selection|slotted|backdrop|placeholder|marker|%(spelling|grammar)\-error)
+
+" after
+" before
+" cue
+" first-letter
+" first-line
+" selection
+" slotted
+" backdrop
+" placeholder
+" marker
+" spelling-error
+" grammar-error
+
+" CONSTANT COLORS:
+" %(alice|cadet|cornflower|dark|darkslate|deepsky|dodger|light|lightsky|lightsteel|medium|mediumslate|midnight|powder|royal|sky|slate|steel)?blue
+" %(dark|darkslate|light|lightslate|slate|dim)?gr[ae]y
+" %(dark|indian|mediumviolet|orange|paleviolet)?red
+" %(forest|lawn|lime|mediumsea|mediumspring|pale|sea|spring|yellow)?green
+" light%(coral|cyan|goldenrodyellow|green|pink|salmon|seagreen|yellow)
+" dark%(cyan|goldenrod|green|khaki|magenta|olivegreen|orange|orchid|salmon|seagreen|turquoise|violet)
+" medium%(aquamarine|orchid|purple|turquoise)
+" %(deep|hot)?pink
+" %(coral|cyan|%(pale)?goldenrod|salmon|%(green)?yellow|%(blue)?violet)
+" %(azure|beige|bisque|black|blanchedalmond|brown|burlywood|chartreuse|chocolate|cornsilk|crimson|firebrick|floralwhite|fuchsia|gainsboro|ghostwhite|gold|honeydew|indigo)
+" %(ivory|khaki|lavender%(blush)?|lemonchiffon|lime|linen|magenta|maroon|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive%(drab)?|orange|orchid|papayawhip)
+" %(peachpuff|peru|plum|purple|rebeccapurple|rosybrown|saddlebrown|sandybrown|seashell|sienna|silver|snow|tan|teal|thistle|tomato|turquoise|wheat|white%(smoke)?)
+" %(paleturquoise|antiquewhite|aqua%(marine)?)
+
+" AliceBlue AntiqueWhite Aqua Aquamarine Azure
+" Beige Bisque Black BlanchedAlmond Blue BlueViolet Brown BurlyWood CadetBlue Chartreuse Chocolate
+" Coral CornflowerBlue Cornsilk Crimson Cyan DarkBlue DarkCyan DarkGoldenRod DarkGray DarkGrey DarkGreen
+" DarkKhaki DarkMagenta DarkOliveGreen DarkOrange DarkOrchid DarkRed DarkSalmon DarkSeaGreen DarkSlateBlue
+" DarkSlateGray DarkSlateGrey DarkTurquoise DarkViolet DeepPink DeepSkyBlue DimGray DimGrey DodgerBlue
+" FireBrick FloralWhite ForestGreen Fuchsia Gainsboro GhostWhite Gold GoldenRod Gray Grey Green GreenYellow
+" HoneyDew HotPink IndianRed Indigo Ivory Khaki Lavender LavenderBlush LawnGreen LemonChiffon LightBlue
+" LightCoral LightCyan LightGoldenRodYellow LightGray LightGrey LightGreen LightPink LightSalmon LightSeaGreen
+" LightSkyBlue LightSlateGray LightSlateGrey LightSteelBlue LightYellow Lime LimeGreen Linen Magenta Maroon
+" MediumAquaMarine MediumBlue MediumOrchid MediumPurple MediumSeaGreen MediumSlateBlue MediumSpringGreen
+" MediumTurquoise MediumVioletRed MidnightBlue MintCream MistyRose Moccasin NavajoWhite Navy OldLace Olive
+" OliveDrab Orange OrangeRed Orchid PaleGoldenRod PaleGreen PaleTurquoise PaleVioletRed PapayaWhip
+" PeachPuff Peru Pink Plum PowderBlue Purple RebeccaPurple Red RosyBrown RoyalBlue SaddleBrown Salmon
+" SandyBrown SeaGreen SeaShell Sienna Silver SkyBlue SlateBlue SlateGray SlateGrey Snow SpringGreen
+" SteelBlue Tan Teal Thistle Tomato Turquoise Violet Wheat White WhiteSmoke Yellow YellowGreen
+
+" STYLE RULES:
+" word\-%(wrap|spacing|break)
+" %(interpolation-mode|isolation|region-fragment|widows|white-space|volume|visibility|vertical-align|user-select|tap-highlight-color|table-layout|tab-size|string-set|speech-rate|size)
+" %(running|right|richness|resize|position|pointer-events|play-during|osx-font-smoothing|orphans|order|opacity|max-lines|move-to|mix-blend-mode|lighting-color|letter-spacing|left|quotes)
+" %(presentation-level|stress|height|hanging-punctuation|glyph-orientation-vertical|gap|filter|zoom|z-index|writing-mode|will-change|width|src|fill|empty-cells|elevation|dominant-baseline)
+" %(display|direction|cursor|crop|contain|content|columns|clear|chains|caption-side)
+" voice\-%(stress|rate|range|pitch|family|duration|balance|volume)
+" unicode\-%(range|bidi)
+" transition%(\-%(timing\-function|property|duration|delay))?
+" transform%(\-%(style|origin|box))?
+" text\-%(wrap|underline-position|rendering|overflow|orientation|justify|indent|align%(\-%(last|all))?|combine\-upright|%(emphasis)%(\-%(style|position|color))?|%(decoration)%(\-%(style|skip|line|color))?|transform|spac%(ing|e\-%(trim|collapse))|size\-adjust|shadow)?
+" touch\-%(callout|action)
+" wrap\-%(through|inside|flow|before|after)
+" stroke%(\-%(width|opacity|miterlimit|linejoin|linecap|dash%(offset|corner|array|adjust)|alignment))?
+" ruby\-%(position|merge|align)
+" rest%(\-%(before|after))?
+" speak%(\-%(punctuation|numeral|header|as))?
+" scroll\-%(behavior|snap\-%(type|align|%(margin|padding)%(\-%(top|right|left|bottom|%(block|inline)%(\-%(start|end))?))?))
+" rotation%(\-point)?
+" scrollbar\-%(width|color)
+" shape\-%(outside|margin|inside|image\-threshold|snap\-%(type|align))
+" polar\-%(origin|distance|angle|anchor)
+" pitch%(\-range)?
+" perspective%(\-origin)?
+" pause%(\-%(before|after))?
+" page%(\-%(policy|break\-%(inside|before|after)))?
+" over%(scroll\-behavior|flow%(\-%(y|x|wrap|style|anchor))?)
+" outline%(\-%(width|style|offset|color))?
+" offset\-%(start|end|before|after)
+" object\-%(position|fit)
+" nav-%(up|right|left|down)
+" %(min|max)\-%(width|height)
+" marquee\-%(style|speed)
+" motion%(\-%(rotation|path|offset))?
+" mask%(\-%(type|size|repeat|position|origin|mode|image|composite|clip|border%(\-%(width|source|slice|repeat|outset|mode))?))?
+" marquee\-%(loop|direction)
+" marker%(\-%(start|side|segment|pattern|mid|knockout\-%(right|left)|end))?
+" line%(\-%(snap|height|grid|break))
+" %(%(padding|margin)\-)?%(top|right|bottom|left)
+" %(padding|margin)
+" list\-style%(\-%(type|position|image))?
+" justify\-%(self|items|content)
+" image\-%(resolution|rendering|orientation)
+" initial\-letter%(\-%(wrap|align))?
+" hyphen%(s|ate\-%(character|limit%(\-%(zone|lines|last|chars))?))
+" footnote\-%(policy|display)
+" flood\-%(opacity|color)
+" grid%(\-%(template%(\-%(rows|columns|areas))?|%(row|column)%(\-%(start|gap|end))?|gap|auto%(\-%(rows|flow|columns))?|area))?
+" font%(\-%(weight|synthesis|style|stretch|smoothing|size%(\-adjust)?|kerning|family|display|language\-override|feature\-settings|variant%(\-%(position|numeric|ligatures|east\-asian|caps|alternates))?))?
+" flow%(\-%(into|from))?
+" float%(\-%(reference|offset|defer))?
+" flex%(\-%(wrap|shrink|grow|flow|direction|basis))?
+" cue%(\-%(before|after))?
+" counter\-%(%(re)?set|increment)
+" break\-%(inside|before|after)
+" column%(\-%(width|span|rule%(\-%(width|style|color))?|gap|fill|count))?
+" color%(-interpolation-filters)?
+" clip%(\-%(rule|path))?
+" caret%(\-%(shape|color|animation))?
+" box\-%(suppress|snap|sizing|shadow|decoration\-break)
+" bookmark\-%(state|level|label)
+" border\-%(top|bottom)\-%(left|right)\-radius
+" border\-%(width|style|spacing|radius|image%(\-%(width|source|slice|repeat|outset))?|color|collapse|boundary)
+" border%(\-%(top|right|bottom|left)%(\-%(width|style|color))?)?
+" align%(ment\-baseline|\-%(self|items|content))
+" %(baseline\-shift|backface\-visibility|backdrop\-filter|azimuth|aspect\-ratio|appearance|all)
+" background%(\-%(size|repeat|position|origin|image|color|clip|blend\-mode|attachment))?
+" animation%(\-%(timing\-function|play-state|name|iteration\-count|fill\-mode|duration|direction|delay))?
+
+" word-wrap word-spacing word-break
+" zoom z-index writing-mode will-change width
+" widows white-space volume visibility vertical-align user-select
+" tap-highlight-color table-layout tab-size string-set stress src
+" speech-rate size running right ruchness resize
+" position pointer-events play-during osx-font-smoothing orphans
+" order opacity
+" max-lines move-to mix-blend-mode
+" lighting-color letter-spacing left
+" height hanging-punctuation glyph-orientation-vertical gap filter
+" fill empty-cells elevation dominant-baseline display direction cursor crop contain content columns clear chains caption-side
+" quotes presentation-level
+" voice-volume  voice-stress voice-rate voice-range voice-pitch voice-family voice-duration voice-balance quotes presentation-level
+" unicode-range unicode-bidi tap-highlight-color table-layout tab-size string-set stress src
+" transition-timing-function transition-property transition-duration transition-delay transition
+" transform-style transform-origin transform-box transform
+" text-wrap text-underline-position
+" text-rendering text-overflow text-orientation text-justify text-indent text-combine-upright
+" text-emphasis-style text-emphasis-position text-emphasis-color text-emphasis
+" text-decoration-style text-decoration-skip text-decoration-line text-decoration-color text-decoration
+" text-align-last text-align-all text-align touch-callout touch-action wrap-through wrap-inside wrap-flow wrap-before wrap-after
+" text-space-trim text-space-collapse text-size-adjust text-shadow
+" stroke-width stroke-opacity stroke-miterlimit stroke-linejoin stroke-linecap stroke-dashoffset stroke-dashcorner stroke-dasharray stroke-dashadjust stroke-alignment stroke
+" speech-rate size running ruby-position ruby-merge ruby-align richness rest-before rest-after rest resize
+" speak-punctuation speak-numeral speak-header speak-as speak
+" scroll-snap-padding-top scroll-snap-padding-right scroll-snap-padding-left scroll-snap-padding-inline-start scroll-snap-padding-inline-end scroll-snap-padding-inline
+" scroll-snap-padding-bottom scroll-snap-padding-block-start scroll-snap-padding-block-end scroll-snap-padding-block scroll-snap-padding
+" scroll-snap-margin-top scroll-snap-margin-right scroll-snap-margin-left scroll-snap-margin-inline-start scroll-snap-margin-inline-end scroll-snap-margin-inline
+" scroll-snap-margin-bottom scroll-snap-margin-block-start scroll-snap-margin-block-end scroll-snap-margin-block scroll-snap-margin scroll-snap-type scroll-snap-align
+" scroll-behavior text-transform text-spacing
+" rotation-point rotation scrollbar-width scrollbar-color
+" region-fragment shape-outside shape-margin shape-inside shape-image-threshold
+" position polar-origin polar-distance polar-angle polar-anchor pointer-events play-during osx-font-smoothing orphans
+" pitch-range pitch
+" perspective-origin perspective
+" pause-before pause-after pause
+" page-policy page-break-inside page-break-before page-break-after page
+" overscroll-behavior overflow-y overflow-x overflow-wrap overflow-style overflow-anchor overflow
+" outline-width outline-style outline-offset outline-color outline
+" order opacity offset-start offset-end offset-before offset-after object-position object-fit nav-up nav-right nav-left nav-down
+" move-to mix-blend-mode min-width min-height max-width max-lines max-height marquee-style marquee-speed
+" motion-rotation motion-path motion-offset motion
+" mask-type mask-size mask-repeat mask-position mask-origin mask-mode mask-image mask-composite mask-clip mask-border-width mask-border-source mask-border-slice mask-border-repeat
+" mask-border-outset mask-border-mode mask-border mask
+" marquee-loop marquee-direction
+" marker-start marker-side marker-segment marker-pattern marker-mid marker-knockout-right marker-knockout-left marker-end marker
+" line-snap line-height line-grid line-break lighting-color letter-spacing left
+" padding-top padding-right padding-left padding-bottom padding
+" margin-top margin-right margin-left margin-bottom margin
+" top right bottom left
+" list-style-type list-style-position list-style-image list-style
+" justify-self justify-items justify-content image-resolution image-rendering image-orientation
+" isolation interpolation-mode
+" initial-letter-wrap initial-letter-align initial-letter
+" hyphens hyphenate-limit-zone hyphenate-limit-lines hyphenate-limit-last hyphenate-limit-chars hyphenate-character
+" footnote-policy footnote-display flood-opacity flood-color
+" grid-template-rows grid-template-columns grid-template-areas grid-template grid-row-start grid-row-gap grid-row-end grid-row grid-column-start grid-column-gap grid-column-end
+" grid-column grid-gap grid-auto-rows grid-auto-flow grid-auto-columns grid-area grid
+" font-weight font-variant-position font-variant-numeric font-variant-ligatures font-variant-east-asian font-variant-caps font-variant-alternates font-variant font-synthesis
+" font-style font-stretch font-smoothing font-size-adjust font-size font-language-override font-kerning font-feature-settings font-family font-display font
+" flow-into flow-from flow
+" float-reference float-offset float-defer float
+" flex-wrap flex-shrink flex-grow flex-flow flex-direction flex-basis flex
+" cue-before cue-after cue
+" counter-set counter-reset counter-increment break-inside break-before break-after
+" column-width column-span column-rule-width column-rule-style column-rule-color column-rule column-gap column-fill column-count
+" color-interpolation-filters color
+" clip-rule clip-path clip
+" caret-shape caret-color caret-animation caret
+" box-suppress box-snap box-sizing box-shadow box-decoration-break bookmark-state bookmark-level bookmark-label
+" border-top-width border-top-style border-top-right-radius border-top-left-radius border-top-color border-top border-right-width
+" border-right-style border-right-color border-right border-left-width border-left-style border-left-color border-left 
+" border-bottom-width border-bottom-style border-bottom-right-radius
+" border-bottom-left-radius border-bottom-color border-bottom border
+" baseline-shift backface-visibility backdrop-filter azimuth aspect-ratio appearance all
+" alignment-baseline align-self align-items align-content
+" background-size background-repeat background-position background-origin background-image background-color background-clip background-blend-mode background-attachment background
+" animation-timing-function animation-play-state animation-name animation-iteration-count animation-fill-mode animation-duration animation-direction animation-delay animation
+
+" VALUE KEYWORDS:
+" %(pre\-|no)?wrap
+" %([we]|s[we]?|row|col|nwse|n[wse]?)\-resize
+" zoom\-%(out|in)
+" text%(field|\-%(top|bottom))?
+" table%(\-%(%(row|header)%(\-group)?|column|cell|caption))?
+" step\-%(start|end)
+" space\-%(between|around)
+" small\-%(caption|caps)
+" %(sans\-)?serif
+" ruby%(\-%(text|base)%(\-container)?)?
+" pre%(\-line)?
+" no\-%(repeat|drop|allowd)
+" %(padding|message|content|border)\-box
+" inline%(\-%(table|list\-item|grid|flex|block))?
+" grab%(bing)?
+" flex%(\-%(start|end))?
+" ease%(\-%(out|in%(\-out)?))?
+" alternate%(\-reverse)?
+" %(swap|super|sub|style|strict|stretch|status\-bar|static|start|sticky|solid|running|run\-in|row|right|reverse|repeat|relative|progress|transparent|top|thin)
+" %(size|scroll|scale\-down|pointer|pixelated|paused|paint|overflow\-scrolling|optional|optimizeLegibility|optimize\-contrast|oblique|not\-allowed|uppercase)
+" %(normal|none|nearest\-neighbor|move|monospace|middle|menu|match\-parent|manipulation|lowercase|list\-item|linear|left|layout|justify\-all|justify)
+" %(italic|inset|initial|inherit|infinite|icon|hidden|help|grid|grayscale|full\-width|forwards|fixed|fill|fallback|end|ellipsis|wait|visible|vertical\-text)
+" %(dotted|default|dashed|cursive|crosshair|crisp\-edges|cover|courier|context\-menu|contents|content|contain|condensed|column|collapse|unset|underline)
+" %(clip|center|cell|caption|capitalize|button|break\-word|bottom|both|bolder|bold|block|baseline|backwards|auto|antialiased|all\-scroll|alias|absolute)
+
+" zoom-out zoom-in wrap wait w-resize visible vertical-text
+" uppercase unset underline transparent top thin textfield text-top text-bottom text
+" table-row-group table-row table-header-group table-column table-cell table-caption table
+" swap sw-resize super sub style strict stretch step-start step-end
+" status-bar static start sticky space-between space-around solid small-caption
+" small-caps size serif se-resize scroll scale-down sans-serif s-resize
+" running run-in ruby-text-container ruby-text ruby-base-container ruby-base
+" ruby row-resize row right reverse repeat relative progress
+" pre-wrap pre-line pre pointer pixelated paused paint
+" padding-box overflow-scrolling optional optimizeLegibility
+" optimize-contrast oblique nwse-resize nw-resize ns-resize nowrap not-allowed
+" normal none no-repeat no-drop no-allowed nesw-resize nearest-neighbor
+" ne-resize n-resize move monospace middle message-box menu match-parent
+" manipulation lowercase list-item linear left layout justify-all justify
+" italic inset inline-table inline-list-item
+" inline-grid inline-flex inline-block inline initial inherit infinite icon
+" hidden help grid grayscale grabbing grab full-width forwards
+" flex-start flex-end flex fixed fill fallback end ellipsis
+" ease-out ease-in-out ease-in e-resize dotted default dashed
+" cursive crosshair crisp-edges cover courier context-menu contents
+" content-box content contain condensed column collapse col-resize
+" clip center cell caption capitalize button break-word bottom
+" both border-box bolder bold block baseline backwards
+" auto antialiased alternate-reverse alternate all-scroll alias absolute
