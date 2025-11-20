@@ -91,7 +91,7 @@ hi! def xhtmlCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 
 " TAGS ATTRIBUTES
 sy cluster xhtmlTagThings
-	\ contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr,xhtmlTagAttrValue,xhtmlOperator
+	\ contains=xhtmlStdTagAttr,xhtmlDataTagAttr,xhtmlAriaTagAttr,xhtmlTagAttrValue,xhtmlOperator,xhtmlPropertyOG
 
 "   `data` is below, as a match instead a keyword,
 " for it to be overlaped by a `data-*` attribute.
@@ -135,11 +135,17 @@ hi! def link xhtmlAriaTagAttr xhtmlStdTagAttr
 
 " MISCELLANEOUS MATCHES
 sy region xhtmlTagAttrValue start=/"/ end=/"/ skip=/\\"/ oneline contained contains=xhtmlUrl
+sy region xhtmlPropertyOG   matchgroup=xhtmlPropertyOGStyle start=/\v<property\="[a-zA-Z_-]+:/ end=/"/ skip=/\\"/ contained
+
 sy match xhtmlOperator contained /\v[=]/
 sy match xhtmlCharCode           /\v\&(\l+|#\d+);/
 sy match xhtmlUrl      contained /\vhttps?:\/\/[^"]*/
+
+hi! def xhtmlPropertyOGStyle ctermfg=yellow ctermbg=none cterm=none
 
 hi! def xhtmlTagAttrValue ctermfg=magenta ctermbg=none cterm=none
 hi! def xhtmlOperator     ctermfg=yellow  ctermbg=none cterm=none
 hi! def xhtmlCharCode     ctermfg=red     ctermbg=none cterm=none
 hi! def xhtmlUrl          ctermfg=magenta ctermbg=none cterm=underline
+
+hi! def link xhtmlPropertyOG xhtmlTagAttrValue
