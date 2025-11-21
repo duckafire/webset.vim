@@ -88,3 +88,13 @@ sy match cssRule contained /\v<%(%(baseline\-shift|backface\-visibility|backdrop
 sy match cssRule contained /\v<%(animation%(\-%(timing\-function|play-state|name|iteration\-count|fill\-mode|duration|direction|delay))?|border%(\-%(top|right|bottom|left)%(\-%(width|style|color))?)?)>/
 
 hi! def link cssRule cssRulesRegionStyle
+
+" COMMENTS
+sy region cssComment start='/\*' end='\*/' contains=cssCommentTitle,cssCommentTag
+
+sy match   cssCommentTitle contained /\v%(^|\/\*)\s*\zs(\u|\s)+:/
+sy keyword cssCommentTag   contained CAUTION DEBUG EDIT NOTE TODO WARN WARNING
+
+hi! def cssComment      ctermfg=darkgray ctermbg=none  cterm=none
+hi! def cssCommentTitle ctermfg=cyan     ctermbg=none  cterm=none
+hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
