@@ -22,6 +22,8 @@
 
 " Spec   : Special
 " Select : Select(or)
+" Func   : Function
+" Attr   : Atribute
 
 " MISCELLANOUS LOGIC
 fu g:ClearCssHighlight()
@@ -52,3 +54,21 @@ hi! def cssHtmlElement  ctermfg=blue  ctermbg=none cterm=none
 hi! def cssElementId    ctermfg=red   ctermbg=none cterm=none
 hi! def cssElementClass ctermfg=green ctermbg=none cterm=none
 hi! def cssSpecSelect   ctermfg=blue  ctermbg=none cterm=bold
+
+" OPERATORS
+" [iI] : case-insensitive | [sS] : case-sensitive
+sy region cssAttrSelectRegion matchgroup=cssAttrSelectRegionStyle start='\[' end='\v%(%(\s|")[iIsS])?\]'
+	\ contains=cssAttrSelectOperator
+sy region cssFuncRegion       matchgroup=cssFuncRegionStyle       start='('  end=')'
+sy region cssRulesRegion      matchgroup=cssRulesRegionStyle      start='{'  end='}'
+
+sy match cssOperator /\v[,:;+~>]/
+
+sy match cssAttrSelectOperator contained /\v[~|^$*]?\=/
+
+hi! def cssOperator         ctermfg=yellow  ctermbg=none cterm=none
+hi! def cssRulesRegionStyle ctermfg=yellow  ctermbg=none cterm=bold
+
+hi! def link cssAttrSelectRegionStyle cssOperator
+hi! def link cssFuncRegionStyle       cssOperator
+hi! def link cssAttrSelectOperator    cssOperator
