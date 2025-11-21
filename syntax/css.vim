@@ -41,6 +41,19 @@ hi! def cssElementId    ctermfg=red   ctermbg=none cterm=none
 hi! def cssElementClass ctermfg=green ctermbg=none cterm=none
 hi! def cssSpecSelect   ctermfg=blue  ctermbg=none cterm=bold
 
+" PSEUDO CLASSES/OBJECTS
+sy match cssPseudoClass /\v:%(active|checked|default|disabled|empty|enabled|first|fullscreen|focus|hover|indeterminate|in-range|invalid|%(first|last|only)\-%(child|of\-type))/
+sy match cssPseudoClass /\v:%(left|link|optional|out-of-range|read\-%(only|write)|required|right|root|scope|target|valid|visited)/
+sy region cssPseudoClassWithArg matchgroup=cssPseudoClass end=')' keepend
+	\ start='\v:nth\-%(last\-)?%(child|of\-type)\('
+	\ start='\v:%(lang|dir|not|has)\('
+	\ contains=cssHtmlElement,cssElementId,cssElementClass,cssPseudoClass,cssPseudoClassWithArg,cssPseudoElement,cssSelectOperator
+
+sy match cssPseudoElement /\v::%(after|before|cue|first\-%(letter|line)|selection|slotted|backdrop|placeholder|marker|%(spelling|grammar)\-error)/
+
+hi! def cssPseudoClass   ctermfg=cyan ctermbg=none cterm=none
+hi! def cssPseudoElement ctermfg=cyan ctermbg=none cterm=bold
+
 " OPERATORS
 " [iI] : case-insensitive | [sS] : case-sensitive
 sy region cssAttrSelectRegion matchgroup=cssAttrSelectRegionStyle start='\[' end='\v%(%(\s|")[iIsS])?\]'
