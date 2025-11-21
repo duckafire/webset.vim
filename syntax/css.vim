@@ -116,9 +116,16 @@ hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 sy region cssValueRegion matchgroup=cssSelectOperator contained start=':' end=';'
 	\ contains=@cssValuesCluster
 
-sy cluster cssValuesCluster contains=cssHexCodeColor,cssConstantColor,cssValueOperator,cssRuleValue,cssFunction
+sy cluster cssValuesCluster contains=cssHexCodeColor,cssConstantColor,cssValueOperator,cssRuleValue,cssFunction,cssMeasureUnit
 
 sy match cssValueOperator contained '[,+\-\*/%]'
+
+"   Vim-regex 'break' when the operator
+" `<`/`>` is used before/after a
+" no-alphanumeric character. Because of
+" this, I used `%()` to divide some
+" matches - e.g.: `%(:|<)`.
+sy match cssMeasureUnit /\v%(%(\d*)?\.|<)\d+%(\%|%(cm|deg|grad|in|turn|rad|[dls]?v%(max|min|[bhiw])|dp%(cm|i|px)|k?Hz|m[ms]|[Qsx]|p[ctx]|r?e[mx]|r?%(cap|ch|ic|lh))>)?/
 
 sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{3}[a-fA-F0-9]?>/
 sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{6}%([a-fA-F0-9]{2})?>/
@@ -152,6 +159,7 @@ sy region cssFunction matchgroup=cssOperator contained keepend end=')'
 	\ start='\v<%(repeat%(ing\-%(conic|linear|radial)\-gradient)?|rotate%(3d|[XYZ])?|round|saturate|scale%(3d|[XYZ])?|sepia|skew[XY]?|sqrt|steps|translate[XY]?|url|var)\('
 	\ contains=@cssValuesCluster
 
+hi! def cssMeasureUnit  ctermfg=cyan  ctermbg=none cterm=none
 hi! def cssHexCodeColor ctermfg=green ctermbg=none cterm=none
 hi! def cssRuleValue    ctermfg=red   ctermbg=none cterm=none
 
