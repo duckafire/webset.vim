@@ -25,20 +25,6 @@
 " Func   : Function
 " Attr   : Atribute
 
-" MISCELLANOUS LOGIC
-fu g:ClearCssHighlight()
-	for group in ["AnimationAttr","Color","FunctionName","MarqueeAttr","PseudoClass","TransformAttr","AnimationProp","ColorProp","GeneratedContentAttr","MarqueeProp","PseudoClassFn","TransformProp","AtKeyword","Comment","GeneratedContentProp","MediaAttr","PseudoClassId","TransitionAttr","AtRule","CommonAttr","GradientAttr","MediaComma","PseudoClassLang","TransitionProp","AtRuleLogical","ContentForPagedMediaAttr","GridAttr","MediaProp","RenderAttr","UIAttr","Attr","ContentForPagedMediaProp","GridProp","MediaType","RenderProp","UIProp","AttrComma","Definition","Hacks","MobileTextProp","RubyAttr","URL","AttrRegion","Deprecated","HyerlinkAttr","MultiColumnAttr","RubyProp","UnicodeEscape","AttributeSelector","DimensionAttr","HyerlinkProp","MultiColumnProp","SelectorOp","UnicodeRange","AuralAttr","DimensionProp","IEUIAttr","Noise","SelectorOp2","UnitDecorators","AuralProp","Error","IEUIProp","PaddingAttr","SpecialCharQ","ValueAngle","BackgroundAttr","FlexibleBoxAttr","Identifier","PageMarginProp","SpecialCharQQ","ValueFrequency","BackgroundProp","FlexibleBoxProp","Important","PageProp","SpeechAttr","ValueInteger","BorderAttr","FontAttr","InteractAttr","PagePseudo","SpeechProp","ValueLength","BorderProp","FontDescriptor","InteractProp","PagedMediaAttr","StringQ","ValueNumber","BoxAttr","FontDescriptorAttr","KeyFrameProp","PagedMediaProp","StringQQ","ValueTime","BoxProp","FontDescriptorBlock","LineboxAttr","PositioningAttr","TableAttr","Vendor","BraceError","FontDescriptorProp","LineboxProp","PositioningProp","TableProp","Braces","FontProp","ListAttr","PrintAttr","TagName","ClassName","Function","ListProp","PrintProp","TextAttr","ClassNameDot","FunctionComma","MarginAttr","Prop","TextProp"]
-		exec "sil! sy  clear css" . group
-		exec "sil! hi! clear css" . group
-	endfo
-endfu
-
-augroup CLEAR_CSS_HIGHLIGHT
-	autocmd!
-	autocmd BufRead,BufNewFile *.css call g:ClearCssHighlight()
-	autocmd FileType css             call g:ClearCssHighlight()
-augroup END
-
 " SELECTORS
 " Using match, instead keyword, to allow
 " that other matches can replace these.
