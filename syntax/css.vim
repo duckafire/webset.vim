@@ -61,6 +61,7 @@ sy region cssAttrSelectRegion matchgroup=cssAttrSelectRegionStyle start='\[' end
 	\ contains=cssAttrSelectOperator,cssAttrSelectSpecAttr,cssAttrSelectValue
 sy region cssFuncRegion       matchgroup=cssFuncRegionStyle       start='('  end=')'
 sy region cssRulesRegion      matchgroup=cssRulesRegionStyle      start='{'  end='}'
+	\ contains=cssRule
 
 sy match cssOperator /\v[,:;+~>]/
 
@@ -69,10 +70,35 @@ sy match  cssAttrSelectSpecAttr contained /\vdata\-%(\w|\-)*/
 sy region cssAttrSelectValue    matchgroup=cssOperator contained start='="\?' end='\v"?%( [iIsS]?|[iIsS]?\])'
 
 hi! def cssOperator           ctermfg=yellow  ctermbg=none cterm=none
-hi! def cssRulesRegionStyle   ctermfg=yellow  ctermbg=none cterm=bold
+hi! def cssRulesRegionStyle   ctermfg=blue    ctermbg=none cterm=bold
 hi! def cssAttrSelectSpecAttr ctermfg=white   ctermbg=none cterm=italic
 hi! def cssAttrSelectValue    ctermfg=magenta ctermbg=none cterm=none
 
 hi! def link cssAttrSelectRegionStyle cssOperator
 hi! def link cssFuncRegionStyle       cssOperator
 hi! def link cssAttrSelectOperator    cssOperator
+
+" RULES
+sy match cssRule contained /\v<%(word\-%(wrap|spacing|break)|voice\-%(stress|rate|range|pitch|family|duration|balance|volume)|display|direction|cursor|crop|contain|content|columns|clear|chains|caption-side)>/
+sy match cssRule contained /\v<%(interpolation-mode|isolation|region-fragment|widows|white-space|volume|visibility|vertical-align|user-select|tap-highlight-color|table-layout|tab-size|string-set|speech-rate|size)>/
+sy match cssRule contained /\v<%(running|right|richness|resize|position|pointer-events|play-during|osx-font-smoothing|orphans|order|opacity|max-lines|move-to|mix-blend-mode|lighting-color|letter-spacing|left|quotes)>/
+sy match cssRule contained /\v<%(presentation-level|stress|height|hanging-punctuation|glyph-orientation-vertical|gap|filter|zoom|z-index|writing-mode|will-change|width|src|fill|empty-cells|elevation|dominant-baseline)>/
+sy match cssRule contained /\v<%(unicode\-%(range|bidi)|transition%(\-%(timing\-function|property|duration|delay))?|transform%(\-%(style|origin|box))?|touch\-%(callout|action)|wrap\-%(through|inside|flow|before|after))>/
+sy match cssRule contained /\v<text\-%(wrap|underline-position|rendering|overflow|orientation|justify|indent|align%(\-%(last|all))?|combine\-upright|%(emphasis)%(\-%(style|position|color))?|%(decoration)%(\-%(style|skip|line|color))?|transform|spac%(ing|e\-%(trim|collapse))|size\-adjust|shadow)?>/
+sy match cssRule contained /\v<%(stroke%(\-%(width|opacity|miterlimit|linejoin|linecap|dash%(offset|corner|array|adjust)|alignment))?|ruby\-%(position|merge|align)|shape\-%(outside|margin|inside|image\-threshold|snap\-%(type|align)))>/
+sy match cssRule contained /\v<%(rest%(\-%(before|after))?|speak%(\-%(punctuation|numeral|header|as))?|scroll\-%(behavior|snap\-%(type|align|%(margin|padding)%(\-%(top|right|left|bottom|%(block|inline)%(\-%(start|end))?))?)))>/
+sy match cssRule contained /\v<%(rotation%(\-point)?|scrollbar\-%(width|color)|polar\-%(origin|distance|angle|anchor)|pitch%(\-range)?|perspective%(\-origin)?|page%(\-%(policy|break\-%(inside|before|after)))?)>/
+sy match cssRule contained /\v<%(pause%(\-%(before|after))?|over%(scroll\-behavior|flow%(\-%(y|x|wrap|style|anchor))?)|outline%(\-%(width|style|offset|color))?|offset\-%(start|end|before|after)|object\-%(position|fit))>/
+sy match cssRule contained /\v<%(marquee\-%(style|speed)|motion%(\-%(rotation|path|offset))?|mask%(\-%(type|size|repeat|position|origin|mode|image|composite|clip|border%(\-%(width|source|slice|repeat|outset|mode))?))?)>/
+sy match cssRule contained /\v<%(nav-%(up|right|left|down)|%(min|max)\-%(width|height)|marquee\-%(loop|direction)|marker%(\-%(start|side|segment|pattern|mid|knockout\-%(right|left)|end))?|line%(\-%(snap|height|grid|break)))>/
+sy match cssRule contained /\v<%(%(%(padding|margin)\-)?%(top|right|bottom|left|block|inline)|%(padding|margin)|list\-style%(\-%(type|position|image))?|justify\-%(self|items|content)|image\-%(resolution|rendering|orientation))>/
+sy match cssRule contained /\v<%(initial\-letter%(\-%(wrap|align))?|hyphen%(s|ate\-%(character|limit%(\-%(zone|lines|last|chars))?))|float%(\-%(reference|offset|defer))?|flex%(\-%(wrap|shrink|grow|flow|direction|basis))?)>/
+sy match cssRule contained /\v<%(grid%(\-%(template%(\-%(rows|columns|areas))?|%(row|column)%(\-%(start|gap|end))?|gap|auto%(\-%(rows|flow|columns))?|area))?|footnote\-%(policy|display)|flood\-%(opacity|color))>/
+sy match cssRule contained /\v<font%(\-%(weight|synthesis|style|stretch|smoothing|size%(\-adjust)?|kerning|family|display|language\-override|feature\-settings|variant%(\-%(position|numeric|ligatures|east\-asian|caps|alternates))?))?>/
+sy match cssRule contained /\v<%(cue%(\-%(before|after))?|counter\-%(%(re)?set|increment)|break\-%(inside|before|after)|column%(\-%(width|span|rule%(\-%(width|style|color))?|gap|fill|count))?|flow%(\-%(into|from))?)>/
+sy match cssRule contained /\v<%(color%(-interpolation-filters)?|clip%(\-%(rule|path))?|caret%(\-%(shape|color|animation))?|box\-%(suppress|snap|sizing|shadow|decoration\-break)|border\-%(top|bottom)\-%(left|right)\-radius)>/
+sy match cssRule contained /\v<%(border\-%(width|style|spacing|radius|image%(\-%(width|source|slice|repeat|outset))?|color|collapse|boundary)|align%(ment\-baseline|\-%(self|items|content))|bookmark\-%(state|level|label))>/
+sy match cssRule contained /\v<%(%(baseline\-shift|backface\-visibility|backdrop\-filter|azimuth|aspect\-ratio|appearance|all)|background%(\-%(size|repeat|position|origin|image|color|clip|blend\-mode|attachment))?)>/
+sy match cssRule contained /\v<%(animation%(\-%(timing\-function|play-state|name|iteration\-count|fill\-mode|duration|direction|delay))?|border%(\-%(top|right|bottom|left)%(\-%(width|style|color))?)?)>/
+
+hi! def link cssRule cssRulesRegionStyle
