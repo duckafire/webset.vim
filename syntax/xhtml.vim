@@ -30,8 +30,8 @@ fu! g:FileTypeHtmlToXhtml()
 	set filetype=xhtml
 
 	for group in ["Arg","CssDefinition","H3","ItalicBoldUnderline","PreProcAttrName","StyleArg","UnderlineItalic","Bold","CssStyleComment","H4","ItalicUnderline","PreStmt","Tag","UnderlineItalicBold","BoldItalic","EndTag","H5","ItalicUnderlineBold","ScriptTag","TagError","Value","BoldItalicUnderline","Error","H6","LeadingSpace","Special","TagN","BoldUnderline","Event","Head","Link","SpecialChar","TagName","BoldUnderlineItalic","EventDQ","Highlight","PreAttr","SpecialTagName","Title","Comment","EventSQ","HighlightSkip","PreError","Statement","Underline","CommentError","H1","Italic","PreProc","Strike","UnderlineBold","CommentPart","H2","ItalicBold","PreProcAttrError","String","UnderlineBoldItalic"]
-		exec "sy  clear html" . group
-		exec "hi! clear html" . group
+		exec "sil! sy  clear html" . group
+		exec "sil! hi! clear html" . group
 	endfo
 endfu
 
