@@ -22,8 +22,8 @@
 
 " Spec  : Special
 " Dtype : Doctype
-" Cont  : Container(s)
-" Attr  : Attribute(s)
+" Cont  : Container
+" Attr  : Attribute
 
 " MISCELLANOUS LOGIC
 fu! g:FileTypeHtmlToXhtml()

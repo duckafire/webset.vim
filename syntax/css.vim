@@ -58,16 +58,20 @@ hi! def cssSpecSelect   ctermfg=blue  ctermbg=none cterm=bold
 " OPERATORS
 " [iI] : case-insensitive | [sS] : case-sensitive
 sy region cssAttrSelectRegion matchgroup=cssAttrSelectRegionStyle start='\[' end='\v%(%(\s|")[iIsS])?\]'
-	\ contains=cssAttrSelectOperator
+	\ contains=cssAttrSelectOperator,cssAttrSelectSpecAttr,cssAttrSelectValue
 sy region cssFuncRegion       matchgroup=cssFuncRegionStyle       start='('  end=')'
 sy region cssRulesRegion      matchgroup=cssRulesRegionStyle      start='{'  end='}'
 
 sy match cssOperator /\v[,:;+~>]/
 
-sy match cssAttrSelectOperator contained /\v[~|^$*]?\=/
+sy match  cssAttrSelectOperator contained /\v[~|^$*]?\=/ contains=cssAttrSelectValue
+sy match  cssAttrSelectSpecAttr contained /\vdata\-%(\w|\-)*/
+sy region cssAttrSelectValue    matchgroup=cssOperator contained start='="\?' end='\v"?%( [iIsS]?|[iIsS]?\])'
 
-hi! def cssOperator         ctermfg=yellow  ctermbg=none cterm=none
-hi! def cssRulesRegionStyle ctermfg=yellow  ctermbg=none cterm=bold
+hi! def cssOperator           ctermfg=yellow  ctermbg=none cterm=none
+hi! def cssRulesRegionStyle   ctermfg=yellow  ctermbg=none cterm=bold
+hi! def cssAttrSelectSpecAttr ctermfg=white   ctermbg=none cterm=italic
+hi! def cssAttrSelectValue    ctermfg=magenta ctermbg=none cterm=none
 
 hi! def link cssAttrSelectRegionStyle cssOperator
 hi! def link cssFuncRegionStyle       cssOperator
