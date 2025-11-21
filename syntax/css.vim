@@ -49,20 +49,20 @@ sy region cssFuncRegion       matchgroup=cssFuncRegionStyle       start='('  end
 sy region cssRulesRegion      matchgroup=cssRulesRegionStyle      start='{'  end='}'
 	\ contains=cssRule,cssValueRegion
 
-sy match cssOperator /\v[,:;+~>]/
+sy match cssSelectOperator '[+~>,]'
 
 sy match  cssAttrSelectOperator contained /\v[~|^$*]?\=/ contains=cssAttrSelectValue
 sy match  cssAttrSelectSpecAttr contained /\vdata\-%(\w|\-)*/
-sy region cssAttrSelectValue    matchgroup=cssOperator contained start='="\?' end='\v"?%( [iIsS]?|[iIsS]?\])'
+sy region cssAttrSelectValue    matchgroup=cssSelectOperator contained start='="\?' end='\v"?%( [iIsS]?|[iIsS]?\])'
 
-hi! def cssOperator           ctermfg=yellow  ctermbg=none cterm=none
+hi! def cssSelectOperator     ctermfg=yellow  ctermbg=none cterm=none
 hi! def cssRulesRegionStyle   ctermfg=blue    ctermbg=none cterm=bold
 hi! def cssAttrSelectSpecAttr ctermfg=white   ctermbg=none cterm=italic
 hi! def cssAttrSelectValue    ctermfg=magenta ctermbg=none cterm=none
 
-hi! def link cssAttrSelectRegionStyle cssOperator
-hi! def link cssFuncRegionStyle       cssOperator
-hi! def link cssAttrSelectOperator    cssOperator
+hi! def link cssAttrSelectRegionStyle cssSelectOperator
+hi! def link cssFuncRegionStyle       cssSelectOperator
+hi! def link cssAttrSelectOperator    cssSelectOperator
 
 " RULES
 sy match cssRule contained /\v<%(word\-%(wrap|spacing|break)|voice\-%(stress|rate|range|pitch|family|duration|balance|volume)|display|direction|cursor|crop|contain|content|columns|clear|chains|caption-side)>/
@@ -100,7 +100,7 @@ hi! def cssCommentTitle ctermfg=cyan     ctermbg=none  cterm=none
 hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 
 " VALUES
-sy region cssValueRegion matchgroup=cssOperator contained start=':' end=';'
+sy region cssValueRegion matchgroup=cssSelectOperator contained start=':' end=';'
 	\ contains=cssHexCodeColor,cssConstantColor,cssValueOperator
 
 sy match cssValueOperator contained '[,+\-\*/%]'
@@ -118,5 +118,5 @@ sy match cssConstantColor contained /\v<%(peachpuff|peru|plum|purple|rebeccapurp
 
 hi! def cssHexCodeColor ctermfg=green ctermbg=none cterm=none
 
-hi! def link cssValueOperator cssOperator
+hi! def link cssValueOperator cssSelectOperator
 hi! def link cssConstantColor cssHexCodeColor
