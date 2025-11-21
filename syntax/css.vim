@@ -101,13 +101,14 @@ hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 
 " VALUES
 sy region cssValueRegion matchgroup=cssSelectOperator contained start=':' end=';'
-	\ contains=cssHexCodeColor,cssConstantColor,cssValueOperator
+	\ contains=cssHexCodeColor,cssConstantColor,cssValueOperator,cssRuleValue
 
 sy match cssValueOperator contained '[,+\-\*/%]'
 
 sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{3}[a-fA-F0-9]?>/
 sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{6}%([a-fA-F0-9]{2})?>/
 
+" constant colors
 sy match cssConstantColor contained /\v<%(alice|cadet|cornflower|dark|darkslate|deepsky|dodger|light|lightsky|lightsteel|medium|mediumslate|midnight|powder|royal|sky|slate|steel)?blue>/
 sy match cssConstantColor contained /\v<%(%(dark|darkslate|light|lightslate|slate|dim)?gr[ae]y|%(dark|indian|mediumviolet|orange|paleviolet)?red|%(forest|lawn|lime|mediumsea|mediumspring|pale|sea|spring|yellow)?green)>/
 sy match cssConstantColor contained /\v<%(light%(coral|cyan|goldenrodyellow|green|pink|salmon|seagreen|yellow)|dark%(cyan|goldenrod|green|khaki|magenta|olivegreen|orange|orchid|salmon|seagreen|turquoise|violet))>/
@@ -116,7 +117,20 @@ sy match cssConstantColor contained /\v<%(azure|beige|bisque|black|blanchedalmon
 sy match cssConstantColor contained /\v<%(ivory|khaki|lavender%(blush)?|lemonchiffon|lime|linen|magenta|maroon|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive%(drab)?|orange|orchid|papayawhip)>/
 sy match cssConstantColor contained /\v<%(peachpuff|peru|plum|purple|rebeccapurple|rosybrown|saddlebrown|sandybrown|seashell|sienna|silver|snow|tan|teal|thistle|tomato|turquoise|wheat|white%(smoke)?)>/
 
+" miscellanous constants
+sy match cssRuleValue contained /\v<%(%(pre\-|no)?wrap|%([we]|s[we]?|row|col|nwse|n[wse]?)\-resize)>/
+sy match cssRuleValue contained /\v<%(zoom\-%(out|in)|text%(field|\-%(top|bottom))?|table%(\-%(%(row|header)%(\-group)?|column|cell|caption))?|step\-%(start|end))>/
+sy match cssRuleValue contained /\v<%(small\-%(caption|caps)|%(sans\-)?serif|ruby%(\-%(text|base)%(\-container)?)?|pre%(\-line)?|no\-%(repeat|drop|allowd)|%(padding|message|content|border)\-box)>/
+sy match cssRuleValue contained /\v<%(space\-%(between|around)|inline%(\-%(table|list\-item|grid|flex|block))?|grab%(bing)?|flex%(\-%(start|end))?|ease%(\-%(out|in%(\-out)?))?|alternate%(\-reverse)?)>/
+sy match cssRuleValue contained /\v<%(swap|super|sub|style|strict|stretch|status\-bar|static|start|sticky|solid|running|run\-in|row|right|reverse|repeat|relative|progress|transparent|top|thin)>/
+sy match cssRuleValue contained /\v<%(size|scroll|scale\-down|pointer|pixelated|paused|paint|overflow\-scrolling|optional|optimizeLegibility|optimize\-contrast|oblique|not\-allowed|uppercase)>/
+sy match cssRuleValue contained /\v<%(normal|none|nearest\-neighbor|move|monospace|middle|menu|match\-parent|manipulation|lowercase|list\-item|linear|left|layout|justify\-all|justify)>/
+sy match cssRuleValue contained /\v<%(italic|inset|initial|inherit|infinite|icon|hidden|help|grid|grayscale|full\-width|forwards|fixed|fill|fallback|end|ellipsis|wait|visible|vertical\-text)>/
+sy match cssRuleValue contained /\v<%(dotted|default|dashed|cursive|crosshair|crisp\-edges|cover|courier|context\-menu|contents|content|contain|condensed|column|collapse|unset|underline)>/
+sy match cssRuleValue contained /\v<%(clip|center|cell|caption|capitalize|button|break\-word|bottom|both|bolder|bold|block|baseline|backwards|auto|antialiased|all\-scroll|alias|absolute)>/
+
 hi! def cssHexCodeColor ctermfg=green ctermbg=none cterm=none
+hi! def cssRuleValue    ctermfg=red   ctermbg=none cterm=none
 
 hi! def link cssValueOperator cssSelectOperator
 hi! def link cssConstantColor cssHexCodeColor
