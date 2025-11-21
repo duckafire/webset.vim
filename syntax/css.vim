@@ -47,7 +47,7 @@ sy region cssAttrSelectRegion matchgroup=cssAttrSelectRegionStyle start='\[' end
 	\ contains=cssAttrSelectOperator,cssAttrSelectSpecAttr,cssAttrSelectValue
 sy region cssFuncRegion       matchgroup=cssFuncRegionStyle       start='('  end=')'
 sy region cssRulesRegion      matchgroup=cssRulesRegionStyle      start='{'  end='}'
-	\ contains=cssRule
+	\ contains=cssRule,cssValueRegion
 
 sy match cssOperator /\v[,:;+~>]/
 
@@ -98,3 +98,25 @@ sy keyword cssCommentTag   contained CAUTION DEBUG EDIT NOTE TODO WARN WARNING
 hi! def cssComment      ctermfg=darkgray ctermbg=none  cterm=none
 hi! def cssCommentTitle ctermfg=cyan     ctermbg=none  cterm=none
 hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
+
+" VALUES
+sy region cssValueRegion matchgroup=cssOperator contained start=':' end=';'
+	\ contains=cssHexCodeColor,cssConstantColor,cssValueOperator
+
+sy match cssValueOperator contained '[,+\-\*/%]'
+
+sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{3}[a-fA-F0-9]?>/
+sy match cssHexCodeColor contained /\v#[a-fA-F0-9]{6}%([a-fA-F0-9]{2})?>/
+
+sy match cssConstantColor contained /\v<%(alice|cadet|cornflower|dark|darkslate|deepsky|dodger|light|lightsky|lightsteel|medium|mediumslate|midnight|powder|royal|sky|slate|steel)?blue>/
+sy match cssConstantColor contained /\v<%(%(dark|darkslate|light|lightslate|slate|dim)?gr[ae]y|%(dark|indian|mediumviolet|orange|paleviolet)?red|%(forest|lawn|lime|mediumsea|mediumspring|pale|sea|spring|yellow)?green)>/
+sy match cssConstantColor contained /\v<%(light%(coral|cyan|goldenrodyellow|green|pink|salmon|seagreen|yellow)|dark%(cyan|goldenrod|green|khaki|magenta|olivegreen|orange|orchid|salmon|seagreen|turquoise|violet))>/
+sy match cssConstantColor contained /\v<%(medium%(aquamarine|orchid|purple|turquoise)|%(deep|hot)?pink|%(coral|cyan|%(pale)?goldenrod|salmon|%(green)?yellow|%(blue)?violet)|%(paleturquoise|antiquewhite|aqua%(marine)?))>/
+sy match cssConstantColor contained /\v<%(azure|beige|bisque|black|blanchedalmond|brown|burlywood|chartreuse|chocolate|cornsilk|crimson|firebrick|floralwhite|fuchsia|gainsboro|ghostwhite|gold|honeydew|indigo)>/
+sy match cssConstantColor contained /\v<%(ivory|khaki|lavender%(blush)?|lemonchiffon|lime|linen|magenta|maroon|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive%(drab)?|orange|orchid|papayawhip)>/
+sy match cssConstantColor contained /\v<%(peachpuff|peru|plum|purple|rebeccapurple|rosybrown|saddlebrown|sandybrown|seashell|sienna|silver|snow|tan|teal|thistle|tomato|turquoise|wheat|white%(smoke)?)>/
+
+hi! def cssHexCodeColor ctermfg=green ctermbg=none cterm=none
+
+hi! def link cssValueOperator cssOperator
+hi! def link cssConstantColor cssHexCodeColor
