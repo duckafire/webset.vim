@@ -114,7 +114,9 @@ hi! def cssCommentTag   ctermfg=yellow   ctermbg=black cterm=standout,bold
 
 " VALUES
 sy region cssValueRegion matchgroup=cssSelectOperator contained start=':' end=';'
-	\ contains=cssHexCodeColor,cssConstantColor,cssValueOperator,cssRuleValue
+	\ contains=@cssValuesCluster
+
+sy cluster cssValuesCluster contains=cssHexCodeColor,cssConstantColor,cssValueOperator,cssRuleValue,cssFunction
 
 sy match cssValueOperator contained '[,+\-\*/%]'
 
@@ -141,6 +143,14 @@ sy match cssRuleValue contained /\v<%(normal|none|nearest\-neighbor|move|monospa
 sy match cssRuleValue contained /\v<%(italic|inset|initial|inherit|infinite|icon|hidden|help|grid|grayscale|full\-width|forwards|fixed|fill|fallback|end|ellipsis|wait|visible|vertical\-text)>/
 sy match cssRuleValue contained /\v<%(dotted|default|dashed|cursive|crosshair|crisp\-edges|cover|courier|context\-menu|contents|content|contain|condensed|column|collapse|unset|underline)>/
 sy match cssRuleValue contained /\v<%(clip|center|cell|caption|capitalize|button|break\-word|bottom|both|bolder|bold|block|baseline|backwards|auto|antialiased|all\-scroll|alias|absolute)>/
+
+" functions
+sy region cssFunction matchgroup=cssOperator contained keepend end=')'
+	\ start='\v<%(a?%(cos|sin|tan2?)|attr|blur|brightness|calc)\('
+	\ start='\v<%(circle|clamp|color%(\-mix)?|contrast|counters?|cubic-bezier|drop-shadow|ellipse|exp|fit-content|grayscale|h%(sl|wb)|hue-rotate|hypot|in%(set|vert))\('
+	\ start='\v<%(light-dark|%(conic|linear|radial)\-gradient|log|matrix%(3d)?|min%(max)?|m%(ax|od)|%(ok)?l%(ab|ch)|opacity|perspective|polygon|pow|r%(ay|em|gb))\('
+	\ start='\v<%(repeat%(ing\-%(conic|linear|radial)\-gradient)?|rotate%(3d|[XYZ])?|round|saturate|scale%(3d|[XYZ])?|sepia|skew[XY]?|sqrt|steps|translate[XY]?|url|var)\('
+	\ contains=@cssValuesCluster
 
 hi! def cssHexCodeColor ctermfg=green ctermbg=none cterm=none
 hi! def cssRuleValue    ctermfg=red   ctermbg=none cterm=none
