@@ -210,7 +210,7 @@
 " marquee\-%(loop|direction)
 " marker%(\-%(start|side|segment|pattern|mid|knockout\-%(right|left)|end))?
 " line%(\-%(snap|height|grid|break))
-" %(%(padding|margin)\-)?%(top|right|bottom|left)
+" %(%(padding|margin)\-)?%(top|right|bottom|left|block|inline)
 " %(padding|margin)
 " list\-style%(\-%(type|position|image))?
 " justify\-%(self|items|content)
